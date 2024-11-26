@@ -1,0 +1,782 @@
+[
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "4 BHK Flat for Sale in Thanisandra Main Road, Bangalore",
+    "price": 26700000.0,
+    "area": {
+      "value": 2553.0,
+      "unit": "sqft"
+    },
+    "location": "Nikoo Homes V Phase 1",
+    "description": "",
+    "timestamp": "2024-11-28T13:51:41.929533"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "3 BHK Flat for Sale in Soukya Road, Bangalore",
+    "price": 13500000.0,
+    "area": {
+      "value": 1480.0,
+      "unit": "sqft"
+    },
+    "location": "Provident Botanico",
+    "description": "",
+    "timestamp": "2024-11-28T13:51:41.929533"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "4 BHK Flat for Sale in Hebbal, Bangalore",
+    "price": 86800000.0,
+    "area": {
+      "value": 3108.0,
+      "unit": "sqft"
+    },
+    "location": "Embassy Lake Terraces",
+    "description": "",
+    "timestamp": "2024-11-28T13:51:41.930036"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "3 BHK Flat for Sale in Yelahanka, Bangalore",
+    "price": 22700000.0,
+    "area": {
+      "value": 1667.0,
+      "unit": "sqft"
+    },
+    "location": "Concorde Mayfair",
+    "description": "",
+    "timestamp": "2024-11-28T13:51:41.930036"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "2 BHK Flat for Sale in Thanisandra Main Road, Bangalore",
+    "price": 9700000.0,
+    "area": {
+      "value": 651.0,
+      "unit": "sqft"
+    },
+    "location": "Orchid Salisbury",
+    "description": "",
+    "timestamp": "2024-11-28T13:51:41.931040"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "3 BHK Flat for Sale in Sarjapur Road, Bangalore",
+    "price": 17600000.0,
+    "area": {
+      "value": 1182.0,
+      "unit": "sqft"
+    },
+    "location": "JRC Wild Woods",
+    "description": "",
+    "timestamp": "2024-11-28T13:51:41.931040"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "4 BHK Flat for Sale in Whitefield, Bangalore",
+    "price": 25600000.0,
+    "area": {
+      "value": 2428.0,
+      "unit": "sqft"
+    },
+    "location": "Keya Around The Life",
+    "description": "",
+    "timestamp": "2024-11-28T13:51:41.932044"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "2 BHK Flat for Sale in Devanahalli, Bangalore",
+    "price": 8100000.0,
+    "area": {
+      "value": 1273.0,
+      "unit": "sqft"
+    },
+    "location": "MVN Aero One",
+    "description": "",
+    "timestamp": "2024-11-28T13:51:41.932044"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "3 BHK Flat for Sale in Gunjur, Bangalore",
+    "price": 21300000.0,
+    "area": {
+      "value": 1885.0,
+      "unit": "sqft"
+    },
+    "location": "Mathapathi Grand Field",
+    "description": "",
+    "timestamp": "2024-11-28T13:51:41.933042"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "3 BHK Flat for Sale in Bagaluru, Bangalore",
+    "price": 13600000.000000002,
+    "area": {
+      "value": 1427.0,
+      "unit": "sqft"
+    },
+    "location": "Provident Ecopolitan",
+    "description": "",
+    "timestamp": "2024-11-28T13:51:41.933042"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "3 BHK Flat for Sale in Begur Road, Bangalore",
+    "price": 16000000.0,
+    "area": {
+      "value": 1501.0,
+      "unit": "sqft"
+    },
+    "location": "ASSETZ CANVAS and COVE 2.0",
+    "description": "Multistorey Apartment for Sale in Begur Road, Bangalore. Covered area is 1501.0 Sq-ft. This property belongs to \"ASSETZ CANVAS and COVE 2.0\" .",
+    "timestamp": "2024-11-28T13:51:41.933042"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "4 BHK Flat for Sale in Lal Bagh Main Road, Bangalore",
+    "price": 71400000.0,
+    "area": {
+      "value": 2741.0,
+      "unit": "sqft"
+    },
+    "location": "Orient Grand",
+    "description": "Multistorey Apartment for Sale in Lal Bagh Main Road, Bangalore. Covered area is 2741.0 Sq-ft. This property belongs to \"Orient Grand\" .",
+    "timestamp": "2024-11-28T13:51:41.933042"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "3 BHK Flat for Sale in Hennur Main Road, Bangalore",
+    "price": 19900000.0,
+    "area": {
+      "value": 1898.0,
+      "unit": "sqft"
+    },
+    "location": "DNR PARKLINK PHASE 2",
+    "description": "Multistorey Apartment for Sale in Hennur Main Road, Bangalore. Covered area is 1898.0 Sq-ft. This property belongs to \"DNR PARKLINK PHASE 2\" .",
+    "timestamp": "2024-11-28T13:51:41.934258"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "3 BHK Flat for Sale in Bannerghatta Main Road, Bangalore",
+    "price": 28000000.0,
+    "area": {
+      "value": 1942.0,
+      "unit": "sqft"
+    },
+    "location": "Prestige Elysian",
+    "description": "Multistorey Apartment for Sale in Bannerghatta Main Road, Bangalore. Covered area is 1942.0 Sq-ft. This property belongs to \"Prestige Elysian\" .",
+    "timestamp": "2024-11-28T13:51:41.934258"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "4 BHK Flat for Sale in Thanisandra Main Road, Bangalore",
+    "price": 27900000.0,
+    "area": {
+      "value": 2553.0,
+      "unit": "sqft"
+    },
+    "location": "Nikoo Homes V Phase 2",
+    "description": "Multistorey Apartment for Sale in Thanisandra Main Road, Bangalore. Covered area is 2553.0 Sq-ft. This property belongs to \"Nikoo Homes V Phase 2\" .",
+    "timestamp": "2024-11-28T13:51:41.934762"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "3 BHK Flat for Sale in Yeswanthpur, Bangalore",
+    "price": 45500000.0,
+    "area": {
+      "value": 2315.0,
+      "unit": "sqft"
+    },
+    "location": "The Presidential Tower",
+    "description": "Multistorey Apartment for Sale in Yeswanthpur, Bangalore. Covered area is 2315.0 Sq-ft. This property belongs to \"The Presidential Tower\" .",
+    "timestamp": "2024-11-28T13:51:41.934762"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "3 BHK Flat for Sale in Hoodi, Hoodi, Bangalore",
+    "price": 16399999.999999998,
+    "area": {
+      "value": 1834.0,
+      "unit": "sqft"
+    },
+    "location": "2Getherments Hoodi",
+    "description": "Multistorey Apartment for Sale in Hoodi, Bangalore. Covered area is 1834.0 Sq-ft. This property belongs to \"2Getherments Hoodi\" .",
+    "timestamp": "2024-11-28T13:51:41.934762"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "3 BHK Flat for Sale in Mysore Road, Bangalore",
+    "price": 11299999.999999998,
+    "area": {
+      "value": 1407.0,
+      "unit": "sqft"
+    },
+    "location": "Brigade Panorama",
+    "description": "Multistorey Apartment for Sale in Mysore Road, Bangalore. Covered area is 1407.0 Sq-ft. This property belongs to \"Brigade Panorama\" .",
+    "timestamp": "2024-11-28T13:51:41.935767"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "4 BHK Flat for Sale in Hsr Layout, Bangalore",
+    "price": 81199999.99999999,
+    "area": {
+      "value": 2350.0,
+      "unit": "sqft"
+    },
+    "location": "Sobha Infinia Phase 2",
+    "description": "Multistorey Apartment for Sale in HSR Layout, Bangalore. Covered area is 3264.0 Sq-ft. This property belongs to \"Sobha Infinia Phase 2\" .",
+    "timestamp": "2024-11-28T13:51:41.935767"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "3 BHK Flat for Sale in Hennur Main Road, Bangalore",
+    "price": 19900000.0,
+    "area": {
+      "value": 1898.0,
+      "unit": "sqft"
+    },
+    "location": "DNR PARKLINK PHASE 2",
+    "description": "Multistorey Apartment for Sale in Hennur Main Road, Bangalore. Covered area is 1898.0 Sq-ft. This property belongs to \"DNR PARKLINK PHASE 2\" .",
+    "timestamp": "2024-11-28T13:51:41.935767"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "3 BHK Flat for Sale in Sarjapur Road, Bangalore",
+    "price": 18600000.0,
+    "area": {
+      "value": 1509.0,
+      "unit": "sqft"
+    },
+    "location": "Godrej Lakeside Orchard",
+    "description": "Multistorey Apartment for Sale in Sarjapur Road, Bangalore. Covered area is 1509.0 Sq-ft. This property belongs to \"Godrej Lakeside Orchard\" .",
+    "timestamp": "2024-11-28T13:51:41.935767"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "4 BHK Flat for Sale in Thanisandra, Bangalore",
+    "price": 31600000.0,
+    "area": {
+      "value": 2550.0,
+      "unit": "sqft"
+    },
+    "location": "Lodha Mirabelle",
+    "description": "Multistorey Apartment for Sale in Thanisandra, Bangalore. Covered area is 2550.0 Sq-ft. This property belongs to \"Lodha Mirabelle\" .",
+    "timestamp": "2024-11-28T13:51:41.935767"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "4 BHK Flat for Sale in Sarjapur Road, Bangalore",
+    "price": 21300000.0,
+    "area": {
+      "value": 2145.0,
+      "unit": "sqft"
+    },
+    "location": "Mana Dale",
+    "description": "Multistorey Apartment for Sale in Sarjapur Road, Bangalore. Covered area is 2145.0 Sq-ft. This property belongs to \"Mana Dale\" .",
+    "timestamp": "2024-11-28T13:51:41.937270"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "4 BHK Flat for Sale in Hsr Layout, Bangalore",
+    "price": 81000000.0,
+    "area": {
+      "value": 2350.0,
+      "unit": "sqft"
+    },
+    "location": "Sobha Infinia Phase 2",
+    "description": "Multistorey Apartment for Sale in HSR Layout, Bangalore. Covered area is 3264.0 Sq-ft. This property belongs to \"Sobha Infinia Phase 2\" .",
+    "timestamp": "2024-11-28T13:51:41.937270"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "3 BHK Flat for Sale in J P Nagar, Bangalore",
+    "price": 33900000.0,
+    "area": {
+      "value": 1710.0,
+      "unit": "sqft"
+    },
+    "location": "Vainavi Celestium",
+    "description": "Multistorey Apartment for Sale in JP Nagar, Bangalore. Covered area is 2440.0 Sq-ft. This property belongs to \"Vainavi Celestium\" .",
+    "timestamp": "2024-11-28T13:51:41.937270"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "5 BHK Flat for Sale in Yelahanka, Bangalore",
+    "price": 96900000.0,
+    "area": {
+      "value": 5947.0,
+      "unit": "sqft"
+    },
+    "location": "Brigade Insignia",
+    "description": "Multistorey Apartment for Sale in Yelahanka, Bangalore. Covered area is 5947.0 Sq-ft. This property belongs to \"Brigade Insignia\" .",
+    "timestamp": "2024-11-28T13:51:41.938279"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "3 BHK Flat for Sale in Panathur, Bangalore",
+    "price": 27400000.000000004,
+    "area": {
+      "value": 1885.0,
+      "unit": "sqft"
+    },
+    "location": "Sobha Neopolis",
+    "description": "Multistorey Apartment for Sale in Panathur, Bangalore. Covered area is 1885.0 Sq-ft. This property belongs to \"Sobha Neopolis\" .",
+    "timestamp": "2024-11-28T13:51:41.938279"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "4 BHK Flat for Sale in Rachenahalli, Thanisandra, Bangalore",
+    "price": 23800000.0,
+    "area": {
+      "value": 2120.0,
+      "unit": "sqft"
+    },
+    "location": "Sumadhura Epitome",
+    "description": "Multistorey Apartment for Sale in Rachenahalli, Bangalore. Covered area is 2120.0 Sq-ft. This property belongs to \"Sumadhura Epitome\" .",
+    "timestamp": "2024-11-28T13:51:41.938279"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "4 BHK Flat for Sale in Thanisandra, Bangalore",
+    "price": 32900000.0,
+    "area": {
+      "value": 2655.0,
+      "unit": "sqft"
+    },
+    "location": "Lodha Mirabelle",
+    "description": "Multistorey Apartment for Sale in Thanisandra, Bangalore. Covered area is 2655.0 Sq-ft. This property belongs to \"Lodha Mirabelle\" .",
+    "timestamp": "2024-11-28T13:51:41.939247"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "4 BHK Flat for Sale in Whitefield, Bangalore",
+    "price": 47500000.0,
+    "area": {
+      "value": 2211.0,
+      "unit": "sqft"
+    },
+    "location": "Prestige Pine Forest",
+    "description": "Multistorey Apartment for Sale in Whitefield, Bangalore. Covered area is 3540.0 Sq-ft. This property belongs to \"Prestige Pine Forest\" .",
+    "timestamp": "2024-11-28T13:51:41.939247"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "4 BHK Flat for Sale in Sarjapura, Bangalore",
+    "price": 47800000.0,
+    "area": {
+      "value": 3323.0,
+      "unit": "sqft"
+    },
+    "location": "Mana Foresta",
+    "description": "Multistorey Apartment for Sale in Sarjapura, Bangalore. Covered area is 3323.0 Sq-ft. This property belongs to \"Mana Foresta\" .",
+    "timestamp": "2024-11-28T13:51:45.415670"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "2 BHK Flat for Sale in Hennur Main Road, Bangalore",
+    "price": 11299999.999999998,
+    "area": {
+      "value": 1131.0,
+      "unit": "sqft"
+    },
+    "location": "Rohan Upavan",
+    "description": "Multistorey Apartment for Sale in Hennur Main Road, Bangalore. Covered area is 1131.0 Sq-ft. This property belongs to \"Rohan Upavan\" .",
+    "timestamp": "2024-11-28T13:51:45.415670"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "4 BHK Flat for Sale in Banashankari, Bangalore",
+    "price": 37000000.0,
+    "area": {
+      "value": 3024.0,
+      "unit": "sqft"
+    },
+    "location": "TATA PROMONT PHASE II",
+    "description": "Multistorey Apartment for Sale in Banashankari, Bangalore. Covered area is 3024.0 Sq-ft. This property belongs to \"TATA PROMONT PHASE II\" .",
+    "timestamp": "2024-11-28T13:51:45.415670"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "3 BHK Flat for Sale in Sarjapur Road, Bangalore",
+    "price": 18600000.0,
+    "area": {
+      "value": 1509.0,
+      "unit": "sqft"
+    },
+    "location": "Godrej Lakeside Orchard",
+    "description": "Multistorey Apartment for Sale in Sarjapur Road, Bangalore. Covered area is 1509.0 Sq-ft. This property belongs to \"Godrej Lakeside Orchard\" .",
+    "timestamp": "2024-11-28T13:51:45.416675"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "5 BHK Flat for Sale in Varthur, Bangalore",
+    "price": 55199999.99999999,
+    "area": {
+      "value": 3892.0,
+      "unit": "sqft"
+    },
+    "location": "Prestige Raintree Park",
+    "description": "Multistorey Apartment for Sale in Varthur, Bangalore. Covered area is 3892.0 Sq-ft. This property belongs to \"Prestige Raintree Park\" .",
+    "timestamp": "2024-11-28T13:51:45.416675"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "4 BHK Flat for Sale in Varthur, Bangalore",
+    "price": 36900000.0,
+    "area": {
+      "value": 2533.0,
+      "unit": "sqft"
+    },
+    "location": "Prestige Raintree Park",
+    "description": "Multistorey Apartment for Sale in Varthur, Bangalore. Covered area is 2533.0 Sq-ft. This property belongs to \"Prestige Raintree Park\" .",
+    "timestamp": "2024-11-28T13:51:45.416675"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "3 BHK Flat for Sale in Sarjapur Road, Bangalore",
+    "price": 18600000.0,
+    "area": {
+      "value": 1509.0,
+      "unit": "sqft"
+    },
+    "location": "Godrej Lakeside Orchard",
+    "description": "Multistorey Apartment for Sale in Sarjapur Road, Bangalore. Covered area is 1509.0 Sq-ft. This property belongs to \"Godrej Lakeside Orchard\" .",
+    "timestamp": "2024-11-28T13:51:45.417679"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "4 BHK Flat for Sale in Whitefield, Bangalore",
+    "price": 48800000.0,
+    "area": {
+      "value": 2218.0,
+      "unit": "sqft"
+    },
+    "location": "Prestige Pine Forest",
+    "description": "Multistorey Apartment for Sale in Whitefield, Bangalore. Covered area is 3556.0 Sq-ft. This property belongs to \"Prestige Pine Forest\" .",
+    "timestamp": "2024-11-28T13:51:45.417679"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "4 BHK Flat for Sale in Rajajinagar, Bangalore",
+    "price": 115100000.0,
+    "area": {
+      "value": 3612.0,
+      "unit": "sqft"
+    },
+    "location": "Phoenix Kessaku",
+    "description": "Multistorey Apartment for Sale in Rajajinagar, Bangalore. Covered area is 3612.0 Sq-ft. This property belongs to \"Phoenix Kessaku\" .",
+    "timestamp": "2024-11-28T13:51:45.418184"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "5 BHK Flat for Sale in Whitefield, Bangalore",
+    "price": 26200000.0,
+    "area": {
+      "value": 1962.0,
+      "unit": "sqft"
+    },
+    "location": "Prestige Somerville",
+    "description": "Multistorey Apartment for Sale in Whitefield, Bangalore. Covered area is 1962.0 Sq-ft. This property belongs to \"Prestige Somerville\" .",
+    "timestamp": "2024-11-28T13:51:45.418184"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "4 BHK Flat for Sale in Banashankari, Bangalore",
+    "price": 37000000.0,
+    "area": {
+      "value": 3024.0,
+      "unit": "sqft"
+    },
+    "location": "TATA PROMONT PHASE II",
+    "description": "Multistorey Apartment for Sale in Banashankari, Bangalore. Covered area is 3024.0 Sq-ft. This property belongs to \"TATA PROMONT PHASE II\" .",
+    "timestamp": "2024-11-28T13:51:45.418184"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "4 BHK Flat for Sale in Indiranagar, Bangalore",
+    "price": 72000000.0,
+    "area": {
+      "value": 3230.0,
+      "unit": "sqft"
+    },
+    "location": "Century Regalia",
+    "description": "Multistorey Apartment for Sale in Indiranagar, Bangalore. Covered area is 3230.0 Sq-ft. This property belongs to \"Century Regalia\" .",
+    "timestamp": "2024-11-28T13:51:45.419190"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "4 BHK Flat for Sale in Hosur Road, Bangalore",
+    "price": 25299999.999999996,
+    "area": {
+      "value": 2363.0,
+      "unit": "sqft"
+    },
+    "location": "Mahindra Zen",
+    "description": "Multistorey Apartment for Sale in Hosur Road, Bangalore. Covered area is 2363.0 Sq-ft. This property belongs to \"Mahindra Zen\" .",
+    "timestamp": "2024-11-28T13:51:45.419190"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "3 BHK Flat for Sale in HAL Old Airport Road, Bangalore",
+    "price": 82899999.99999999,
+    "area": {
+      "value": 3099.0,
+      "unit": "sqft"
+    },
+    "location": "Prestige Leela Residences",
+    "description": "Multistorey Apartment for Sale in HAL Old Airport Road, Bangalore. Covered area is 3099.0 Sq-ft. This property belongs to \"Prestige Leela Residences\" .",
+    "timestamp": "2024-11-28T13:51:45.419190"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "4 BHK Flat for Sale in RR Nagar, Bangalore",
+    "price": 28000000.0,
+    "area": {
+      "value": 2800.0,
+      "unit": "sqft"
+    },
+    "location": "Birla Ojasvi",
+    "description": "Multistorey Apartment for Sale in RR Nagar, Bangalore. Covered area is 2800.0 Sq-ft. This property belongs to \"Birla Ojasvi\" .",
+    "timestamp": "2024-11-28T13:51:45.420191"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "4 BHK Flat for Sale in Whitefield, Bangalore",
+    "price": 35700000.0,
+    "area": {
+      "value": 2560.0,
+      "unit": "sqft"
+    },
+    "location": "Vaswani Starlight",
+    "description": "Multistorey Apartment for Sale in Whitefield, Bangalore. Covered area is 2560.0 Sq-ft. This property belongs to \"Vaswani Starlight\" .",
+    "timestamp": "2024-11-28T13:51:45.420191"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "5 BHK Flat for Sale in Varthur, Bangalore",
+    "price": 55199999.99999999,
+    "area": {
+      "value": 3892.0,
+      "unit": "sqft"
+    },
+    "location": "Prestige Raintree Park",
+    "description": "Multistorey Apartment for Sale in Varthur, Bangalore. Covered area is 3892.0 Sq-ft. This property belongs to \"Prestige Raintree Park\" .",
+    "timestamp": "2024-11-28T13:51:45.420191"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "4 BHK Flat for Sale in Whitefield, Bangalore",
+    "price": 47500000.0,
+    "area": {
+      "value": 2211.0,
+      "unit": "sqft"
+    },
+    "location": "Prestige Pine Forest",
+    "description": "Multistorey Apartment for Sale in Whitefield, Bangalore. Covered area is 3540.0 Sq-ft. This property belongs to \"Prestige Pine Forest\" .",
+    "timestamp": "2024-11-28T13:51:45.421189"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "3 BHK Flat for Sale in Sarjapur Road, Bangalore",
+    "price": 15300000.0,
+    "area": {
+      "value": 2151.0,
+      "unit": "sqft"
+    },
+    "location": "ENGRACE VISTA",
+    "description": "Multistorey Apartment for Sale in Sarjapur Road, Bangalore. Covered area is 2151.0 Sq-ft. This property belongs to \"ENGRACE VISTA\" .",
+    "timestamp": "2024-11-28T13:51:45.421189"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "3 BHK Flat for Sale in Panathur, Bangalore",
+    "price": 27400000.000000004,
+    "area": {
+      "value": 1885.0,
+      "unit": "sqft"
+    },
+    "location": "Sobha Neopolis",
+    "description": "Multistorey Apartment for Sale in Panathur, Bangalore. Covered area is 1885.0 Sq-ft. This property belongs to \"Sobha Neopolis\" .",
+    "timestamp": "2024-11-28T13:51:45.421189"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "3 BHK Flat for Sale in Thanisandra Main Road, Bangalore",
+    "price": 9830000.0,
+    "area": {
+      "value": 1570.0,
+      "unit": "sqft"
+    },
+    "location": "Srikara Green Edge",
+    "description": "Multistorey Apartment for Sale in Thanisandra Main Road, Bangalore. Covered area is 1570.0 Sq-ft. This property belongs to \"Srikara Green Edge\" .",
+    "timestamp": "2024-11-28T13:51:45.422189"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "3 BHK Flat for Sale in Panathur, Bangalore",
+    "price": 26700000.0,
+    "area": {
+      "value": 1789.0,
+      "unit": "sqft"
+    },
+    "location": "Sobha Ayana at Dream Acres",
+    "description": "Multistorey Apartment for Sale in Panathur, Bangalore. Covered area is 1789.0 Sq-ft. This property belongs to \"Sobha Ayana at Dream Acres\" .",
+    "timestamp": "2024-11-28T13:51:45.422189"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "4 BHK Flat for Sale in Kogilu Main Road, Bangalore",
+    "price": 26600000.0,
+    "area": {
+      "value": 2464.0,
+      "unit": "sqft"
+    },
+    "location": "Nikoo Homes VI Phase 2",
+    "description": "Multistorey Apartment for Sale in Kogilu Main Road, Bangalore. Covered area is 2464.0 Sq-ft. This property belongs to \"Nikoo Homes VI Phase 2\" .",
+    "timestamp": "2024-11-28T13:51:45.422189"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "4 BHK Flat for Sale in Varthur, Bangalore",
+    "price": 34000000.0,
+    "area": {
+      "value": 2401.0,
+      "unit": "sqft"
+    },
+    "location": "Prestige Raintree Park",
+    "description": "Multistorey Apartment for Sale in Varthur, Bangalore. Covered area is 2401.0 Sq-ft. This property belongs to \"Prestige Raintree Park\" .",
+    "timestamp": "2024-11-28T13:51:45.423195"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "3 BHK Flat for Sale in Rajanukunte, Bangalore",
+    "price": 12000000.0,
+    "area": {
+      "value": 1755.0,
+      "unit": "sqft"
+    },
+    "location": "Shriram Serenity",
+    "description": "Multistorey Apartment for Sale in Rajanukunte, Bangalore. Covered area is 1755.0 Sq-ft. This property belongs to \"Shriram Serenity\" .",
+    "timestamp": "2024-11-28T13:51:45.423195"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "2 BHK Flat for Sale in RR Nagar, Bangalore",
+    "price": 14000000.0,
+    "area": {
+      "value": 950.0,
+      "unit": "sqft"
+    },
+    "location": "Birla Ojasvi",
+    "description": "Multistorey Apartment for Sale in RR Nagar, Bangalore. Covered area is 950.0 Sq-ft. This property belongs to \"Birla Ojasvi\" .",
+    "timestamp": "2024-11-28T13:51:45.423195"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "3 BHK Flat for Sale in Bagaluru, Bangalore",
+    "price": 9600000.0,
+    "area": {
+      "value": 1281.0,
+      "unit": "sqft"
+    },
+    "location": "Provident Ecopolitan",
+    "description": "Multistorey Apartment for Sale in Bagaluru, Bangalore. Covered area is 1281.0 Sq-ft. This property belongs to \"Provident Ecopolitan\" .",
+    "timestamp": "2024-11-28T13:51:45.424191"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "4 BHK Flat for Sale in Rachenahalli, Thanisandra, Bangalore",
+    "price": 23800000.0,
+    "area": {
+      "value": 2120.0,
+      "unit": "sqft"
+    },
+    "location": "Sumadhura Epitome",
+    "description": "Multistorey Apartment for Sale in Rachenahalli, Bangalore. Covered area is 2120.0 Sq-ft. This property belongs to \"Sumadhura Epitome\" .",
+    "timestamp": "2024-11-28T13:51:45.424191"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "3 BHK Flat for Sale in RR Nagar, Bangalore",
+    "price": 13899999.999999998,
+    "area": {
+      "value": 1531.0,
+      "unit": "sqft"
+    },
+    "location": "Elegant Tranquility",
+    "description": "Multistorey Apartment for Sale in RR Nagar, Bangalore. Covered area is 1531.0 Sq-ft. This property belongs to \"Elegant Tranquility\" .",
+    "timestamp": "2024-11-28T13:51:45.424191"
+  },
+  {
+    "source": "magicbricks",
+    "city": "bangalore",
+    "title": "3 BHK Flat for Sale in Koramangala, Bangalore",
+    "price": 39500000.0,
+    "area": {
+      "value": 2889.0,
+      "unit": "sqft"
+    },
+    "location": "Pacifica Hamilton Tower",
+    "description": "Multistorey Apartment for Sale in Koramangala, Bangalore. Covered area is 2889.0 Sq-ft. This property belongs to \"Pacifica Hamilton Tower\" .",
+    "timestamp": "2024-11-28T13:51:45.425189"
+  }
+]

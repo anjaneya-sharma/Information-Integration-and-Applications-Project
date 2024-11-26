@@ -1,0 +1,392 @@
+[
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "3 BHK Flat for Sale in AJMERA BOULEVARD, Malad West, Mumbai",
+    "price": 38200000.0,
+    "area": {
+      "value": 1175.0,
+      "unit": "sqft"
+    },
+    "location": "AJMERA BOULEVARD",
+    "description": "Multistorey Apartment for Sale in Malad West, Mumbai. Covered area is 1175.0 Sq-ft. This property belongs to \"AJMERA BOULEVARD\" .",
+    "timestamp": "2024-11-28T13:51:27.711275"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "4 BHK Flat for Sale in Godrej Avenue Eleven, Mahalakshmi, Mumbai",
+    "price": 129600000.00000001,
+    "area": {
+      "value": 2095.0,
+      "unit": "sqft"
+    },
+    "location": "Godrej Avenue Eleven",
+    "description": "Multistorey Apartment for Sale in Mahalakshmi, Mumbai. Covered area is 2095.0 Sq-ft. This property belongs to \"Godrej Avenue Eleven\" .",
+    "timestamp": "2024-11-28T13:51:27.711275"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "3 BHK Flat for Sale in Salasar Exotica, Mira Road Area, Mumbai",
+    "price": 11200000.000000002,
+    "area": {
+      "value": 842.0,
+      "unit": "sqft"
+    },
+    "location": "Salasar Exotica",
+    "description": "Multistorey Apartment for Sale in Mira Road Area, Mumbai. Covered area is 842.0 Sq-ft. This property belongs to \"Salasar Exotica\" .",
+    "timestamp": "2024-11-28T13:51:27.711275"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "2 BHK Flat for Sale in Sheetal Kiara, Goregaon West, Mumbai",
+    "price": 16100000.000000002,
+    "area": {
+      "value": 666.0,
+      "unit": "sqft"
+    },
+    "location": "Sheetal Kiara",
+    "description": "Multistorey Apartment for Sale in Goregaon West, Mumbai. Covered area is 666.0 Sq-ft. This property belongs to \"Sheetal Kiara\" .",
+    "timestamp": "2024-11-28T13:51:27.712276"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "3 BHK Flat for Sale in Piramal Mahalaxmi, Mahalakshmi, Mumbai",
+    "price": 46600000.0,
+    "area": {
+      "value": 988.0,
+      "unit": "sqft"
+    },
+    "location": "Piramal Mahalaxmi",
+    "description": "Multistorey Apartment for Sale in Mahalakshmi, Mumbai. Covered area is 988.0 Sq-ft. This property belongs to \"Piramal Mahalaxmi\" .",
+    "timestamp": "2024-11-28T13:51:27.712276"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "3 BHK Flat for Sale in Bharat altavista, Andheri West, Mumbai",
+    "price": 59000000.0,
+    "area": {
+      "value": 1308.0,
+      "unit": "sqft"
+    },
+    "location": "Bharat altavista",
+    "description": "Multistorey Apartment for Sale in Andheri West, Mumbai. Covered area is 1308.0 Sq-ft. This property belongs to \"Bharat altavista\" .",
+    "timestamp": "2024-11-28T13:51:27.713275"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "2 BHK Flat for Sale in Alora, Kalina, Mumbai",
+    "price": 33200000.0,
+    "area": {
+      "value": 791.0,
+      "unit": "sqft"
+    },
+    "location": "Alora",
+    "description": "Multistorey Apartment for Sale in Kalina, Mumbai. Covered area is 791.0 Sq-ft. This property belongs to \"Alora\" .",
+    "timestamp": "2024-11-28T13:51:27.713275"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "3 BHK Flat for Sale in Stardeous, Tardeo, Mumbai",
+    "price": 64000000.0,
+    "area": {
+      "value": 1182.0,
+      "unit": "sqft"
+    },
+    "location": "Stardeous",
+    "description": "Multistorey Apartment for Sale in Tardeo, Mumbai. Covered area is 1182.0 Sq-ft. This property belongs to \"Stardeous\" .",
+    "timestamp": "2024-11-28T13:51:27.713275"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "3 BHK Flat for Sale in Lodha Bellagio, Powai, Mumbai",
+    "price": 40500000.0,
+    "area": {
+      "value": 1400.0,
+      "unit": "sqft"
+    },
+    "location": "Lodha Bellagio",
+    "description": "Multistorey Apartment for Sale in Powai, Mumbai. Covered area is 1400.0 Sq-ft. This property belongs to \"Lodha Bellagio\" .",
+    "timestamp": "2024-11-28T13:51:27.714329"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "4 BHK Flat for Sale in Godrej Reserve, Kandivali East, Mumbai",
+    "price": 59400000.00000001,
+    "area": {
+      "value": 2016.0,
+      "unit": "sqft"
+    },
+    "location": "Godrej Reserve",
+    "description": "Multistorey Apartment for Sale in Kandivali East, Mumbai. Covered area is 2500.0 Sq-ft. This property belongs to \"Godrej Reserve\" .",
+    "timestamp": "2024-11-28T13:51:27.714329"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "3 BHK Flat for Sale in Godrej Sky Terraces, Chembur, Mumbai",
+    "price": 70400000.0,
+    "area": {
+      "value": 1516.0,
+      "unit": "sqft"
+    },
+    "location": "Godrej Sky Terraces",
+    "description": "Multistorey Apartment for Sale in Chembur, Mumbai. Covered area is 1840.0 Sq-ft. This property belongs to \"Godrej Sky Terraces\" .",
+    "timestamp": "2024-11-28T13:51:27.714329"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "3 BHK Flat for Sale in Supreme Boulevard, Chembur, Mumbai",
+    "price": 30800000.0,
+    "area": {
+      "value": 938.0,
+      "unit": "sqft"
+    },
+    "location": "Supreme Boulevard",
+    "description": "Multistorey Apartment for Sale in Chembur, Mumbai. Covered area is 938.0 Sq-ft. This property belongs to \"Supreme Boulevard\" .",
+    "timestamp": "2024-11-28T13:51:27.715334"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "3 BHK Flat for Sale in Codename Triumph Tower 1, Bhandup West, Mumbai",
+    "price": 33900000.0,
+    "area": {
+      "value": 1185.0,
+      "unit": "sqft"
+    },
+    "location": "Codename Triumph Tower 1",
+    "description": "Multistorey Apartment for Sale in Bhandup West, Mumbai. Covered area is 1185.0 Sq-ft. This property belongs to \"Codename Triumph Tower 1\" .",
+    "timestamp": "2024-11-28T13:51:27.715334"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "4 BHK Flat for Sale in Rustomjee 180 Bayview, Matunga West, Mumbai",
+    "price": 74000000.0,
+    "area": {
+      "value": 1646.0,
+      "unit": "sqft"
+    },
+    "location": "Rustomjee 180 Bayview",
+    "description": "Multistorey Apartment for Sale in Matunga West, Mumbai. Covered area is 1646.0 Sq-ft. This property belongs to \"Rustomjee 180 Bayview\" .",
+    "timestamp": "2024-11-28T13:51:27.716331"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "3 BHK Flat for Sale in Codename Triumph Tower 1, Bhandup West, Mumbai",
+    "price": 28600000.0,
+    "area": {
+      "value": 1000.0,
+      "unit": "sqft"
+    },
+    "location": "Codename Triumph Tower 1",
+    "description": "Multistorey Apartment for Sale in Bhandup West, Mumbai. Covered area is 1000.0 Sq-ft. This property belongs to \"Codename Triumph Tower 1\" .",
+    "timestamp": "2024-11-28T13:51:27.716331"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "2 BHK Flat for Sale in Satre Happynest, Kanjurmarg East, Mumbai",
+    "price": 14700000.0,
+    "area": {
+      "value": 663.0,
+      "unit": "sqft"
+    },
+    "location": "Satre Happynest",
+    "description": "Multistorey Apartment for Sale in Kanjurmarg East, Mumbai. Covered area is 663.0 Sq-ft. This property belongs to \"Satre Happynest\" .",
+    "timestamp": "2024-11-28T13:51:27.716331"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "3 BHK Flat for Sale in Gold Residences, Vile Parle East, Mumbai",
+    "price": 41000000.0,
+    "area": {
+      "value": 856.0,
+      "unit": "sqft"
+    },
+    "location": "Gold Residences",
+    "description": "Multistorey Apartment for Sale in Vile Parle East, Mumbai. Covered area is 856.0 Sq-ft. This property belongs to \"Gold Residences\" .",
+    "timestamp": "2024-11-28T13:51:27.716331"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "2 BHK Flat for Sale in Runwal Bliss, Kanjurmarg East, Mumbai",
+    "price": 27700000.0,
+    "area": {
+      "value": 809.0,
+      "unit": "sqft"
+    },
+    "location": "Runwal Bliss",
+    "description": "Multistorey Apartment for Sale in Kanjurmarg East, Mumbai. Covered area is 809.0 Sq-ft. This property belongs to \"Runwal Bliss\" .",
+    "timestamp": "2024-11-28T13:51:27.717339"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "4 BHK Flat for Sale in Rustomjee Crown, Prabhadevi, Mumbai",
+    "price": 133699999.99999999,
+    "area": {
+      "value": 2000.0,
+      "unit": "sqft"
+    },
+    "location": "Rustomjee Crown",
+    "description": "Multistorey Apartment for Sale in Prabhadevi, Mumbai. Covered area is 2000.0 Sq-ft. This property belongs to \"Rustomjee Crown\" .",
+    "timestamp": "2024-11-28T13:51:27.717339"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "4 BHK Flat for Sale in Raheja Amaltis, Sion West, Mumbai",
+    "price": 83699999.99999999,
+    "area": {
+      "value": 2175.0,
+      "unit": "sqft"
+    },
+    "location": "Raheja Amaltis",
+    "description": "Multistorey Apartment for Sale in Sion West, Mumbai. Covered area is 2175.0 Sq-ft. This property belongs to \"Raheja Amaltis\" .",
+    "timestamp": "2024-11-28T13:51:27.717339"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "3 BHK Flat for Sale in JVMs Monica Gardens, Mulund East, Mumbai",
+    "price": 31800000.0,
+    "area": {
+      "value": 1055.0,
+      "unit": "sqft"
+    },
+    "location": "JVMs Monica Gardens",
+    "description": "Multistorey Apartment for Sale in Mulund East, Mumbai. Covered area is 1055.0 Sq-ft. This property belongs to \"JVMs Monica Gardens\" .",
+    "timestamp": "2024-11-28T13:51:27.718344"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "4 BHK Flat for Sale in Rejuve 360, Mulund West, Mumbai",
+    "price": 34900000.0,
+    "area": {
+      "value": 1312.0,
+      "unit": "sqft"
+    },
+    "location": "Rejuve 360",
+    "description": "Multistorey Apartment for Sale in Mulund West, Mumbai. Covered area is 1312.0 Sq-ft. This property belongs to \"Rejuve 360\" .",
+    "timestamp": "2024-11-28T13:51:27.718344"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "3 BHK Flat for Sale in 10 BKC, Bandra Kurla Complex, Mumbai",
+    "price": 73400000.0,
+    "area": {
+      "value": 1204.0,
+      "unit": "sqft"
+    },
+    "location": "10 BKC",
+    "description": "Multistorey Apartment for Sale in Bandra Kurla Complex, Mumbai. Covered area is 1204.0 Sq-ft. This property belongs to \"10 BKC\" .",
+    "timestamp": "2024-11-28T13:51:27.718344"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "2 BHK Flat for Sale in Fortune Florence, Borivali East, Mumbai",
+    "price": 27700000.0,
+    "area": {
+      "value": 940.0,
+      "unit": "sqft"
+    },
+    "location": "Fortune Florence",
+    "description": "Multistorey Apartment for Sale in Borivali East, Mumbai. Covered area is 940.0 Sq-ft. This property belongs to \"Fortune Florence\" .",
+    "timestamp": "2024-11-28T13:51:27.719468"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "4 BHK Flat for Sale in Raheja imperia 2, Lower Parel West, Mumbai",
+    "price": 110800000.0,
+    "area": {
+      "value": 2057.0,
+      "unit": "sqft"
+    },
+    "location": "Raheja imperia 2",
+    "description": "Multistorey Apartment for Sale in Lower Parel West, Mumbai. Covered area is 2057.0 Sq-ft. This property belongs to \"Raheja imperia 2\" .",
+    "timestamp": "2024-11-28T13:51:27.719468"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "2 BHK Flat for Sale in Modirealty Ashvattha, Dahisar East, Mumbai",
+    "price": 15300000.0,
+    "area": {
+      "value": 653.0,
+      "unit": "sqft"
+    },
+    "location": "Modirealty Ashvattha",
+    "description": "Multistorey Apartment for Sale in Dahisar East, Mumbai. Covered area is 653.0 Sq-ft. This property belongs to \"Modirealty Ashvattha\" .",
+    "timestamp": "2024-11-28T13:51:27.719468"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "2 BHK Flat for Sale in Advent Neel, Vile Parle West, Mumbai",
+    "price": 44800000.00000001,
+    "area": {
+      "value": 747.0,
+      "unit": "sqft"
+    },
+    "location": "Advent Neel",
+    "description": "Multistorey Apartment for Sale in Vile Parle West, Mumbai. Covered area is 747.0 Sq-ft. This property belongs to \"Advent Neel\" .",
+    "timestamp": "2024-11-28T13:51:27.719468"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "4 BHK Flat for Sale in Metro Millennium, Malad West, Mumbai",
+    "price": 42800000.0,
+    "area": {
+      "value": 1428.0,
+      "unit": "sqft"
+    },
+    "location": "Metro Millennium",
+    "description": "Multistorey Apartment for Sale in Malad West, Mumbai. Covered area is 1428.0 Sq-ft. This property belongs to \"Metro Millennium\" .",
+    "timestamp": "2024-11-28T13:51:27.720654"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "3 BHK Flat for Sale in Redevelopment of Kaveri CHSL, Malad West, Mumbai",
+    "price": 31000000.0,
+    "area": {
+      "value": 1110.0,
+      "unit": "sqft"
+    },
+    "location": "Redevelopment of Kaveri CHSL",
+    "description": "Multistorey Apartment for Sale in Malad West, Mumbai. Covered area is 1110.0 Sq-ft. This property belongs to \"Redevelopment of Kaveri CHSL\" .",
+    "timestamp": "2024-11-28T13:51:27.720654"
+  },
+  {
+    "source": "magicbricks",
+    "city": "mumbai",
+    "title": "2 BHK Flat for Sale in Skyline, Bhayandar West, Mumbai",
+    "price": 15200000.0,
+    "area": {
+      "value": 759.0,
+      "unit": "sqft"
+    },
+    "location": "Skyline",
+    "description": "Multistorey Apartment for Sale in Bhayandar West, Mumbai. Covered area is 759.0 Sq-ft. This property belongs to \"Skyline\" .",
+    "timestamp": "2024-11-28T13:51:27.720654"
+  }
+]

@@ -1,0 +1,392 @@
+[
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "3 BHK Flat for Sale in RJ Pashmina, Chandkheda, Ahmedabad",
+    "price": 14000000.0,
+    "area": {
+      "value": 3024.0,
+      "unit": "sqft"
+    },
+    "location": "RJ Pashmina",
+    "description": "",
+    "timestamp": "2024-11-28T13:52:30.307436"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "3 BHK Flat for Sale in Kavisha The Portrait, Shela, Ahmedabad",
+    "price": 10700000.0,
+    "area": {
+      "value": 1413.0,
+      "unit": "sqft"
+    },
+    "location": "Kavisha The Portrait",
+    "description": "Multistorey Apartment for Sale in Shela, Ahmedabad. Covered area is 2570.0 Sq-ft. This property belongs to \"Kavisha The Portrait\" .",
+    "timestamp": "2024-11-28T13:52:30.307436"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "4 BHK Flat for Sale in THE REGAL, Vaishnodevi Circle, Ahmedabad",
+    "price": 18100000.0,
+    "area": {
+      "value": 3879.0,
+      "unit": "sqft"
+    },
+    "location": "THE REGAL",
+    "description": "Multistorey Apartment for Sale in Vaishnodevi Circle, Ahmedabad. Covered area is 3879.0 Sq-ft. This property belongs to \"THE REGAL\" .",
+    "timestamp": "2024-11-28T13:52:30.308443"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "3 BHK Flat for Sale in Ideal Imbert, Chharodi, Ahmedabad",
+    "price": 12600000.0,
+    "area": {
+      "value": 295.0,
+      "unit": "sqft"
+    },
+    "location": "Ideal Imbert",
+    "description": "Multistorey Apartment for Sale in Chharodi, Ahmedabad. Covered area is 295.0 Sq-ft. This property belongs to \"Ideal Imbert\" .",
+    "timestamp": "2024-11-28T13:52:30.308443"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "3 BHK Flat for Sale in Vishakha Empyrean, Chharodi, Ahmedabad",
+    "price": 20600000.0,
+    "area": {
+      "value": 4122.0,
+      "unit": "sqft"
+    },
+    "location": "Vishakha Empyrean",
+    "description": "Multistorey Apartment for Sale in Chharodi, Ahmedabad. Covered area is 4122.0 Sq-ft. This property belongs to \"Vishakha Empyrean\" .",
+    "timestamp": "2024-11-28T13:52:30.308952"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "3 BHK Flat for Sale in Soham Dev Param, Chandkheda, Ahmedabad",
+    "price": 6820000.0,
+    "area": {
+      "value": 1800.0,
+      "unit": "sqft"
+    },
+    "location": "Soham Dev Param",
+    "description": "Multistorey Apartment for Sale in Chandkheda, Ahmedabad. Covered area is 1800.0 Sq-ft. This property belongs to \"Dev Param\" .",
+    "timestamp": "2024-11-28T13:52:30.308952"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "Apartment for Sale in World Trade Tower, Makarba, Ahmedabad",
+    "price": 11500000.0,
+    "area": {
+      "value": 2096.0,
+      "unit": "sqft"
+    },
+    "location": "World Trade Tower",
+    "description": "Multistorey Apartment for Sale in Makarba, Ahmedabad. Covered area is 2096.0 Sq-ft. This property belongs to \"World Trade Tower\" .",
+    "timestamp": "2024-11-28T13:52:30.308952"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "4 BHK Flat for Sale in Saiyamm Apricus 2, Shilaj, Ahmedabad",
+    "price": 26000000.0,
+    "area": {
+      "value": 2200.0,
+      "unit": "sqft"
+    },
+    "location": "Saiyamm Apricus 2",
+    "description": "Multistorey Apartment for Sale in Shilaj, Ahmedabad. Covered area is 4000.0 Sq-ft. This property belongs to \"Saiyamm Apricus 2\" .",
+    "timestamp": "2024-11-28T13:52:30.309957"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "4 BHK Flat for Sale in Riviera Palacio, Shela, Ahmedabad",
+    "price": 42300000.00000001,
+    "area": {
+      "value": 3829.0,
+      "unit": "sqft"
+    },
+    "location": "Riviera Palacio",
+    "description": "Multistorey Apartment for Sale in Shela, Ahmedabad. Covered area is 7066.0 Sq-ft. This property belongs to \"Riviera Palacio\" .",
+    "timestamp": "2024-11-28T13:52:30.309957"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "3 BHK Flat for Sale in Elenza Gradient, Shela, Ahmedabad",
+    "price": 6880000.0,
+    "area": {
+      "value": 836.0,
+      "unit": "sqft"
+    },
+    "location": "Elenza Gradient",
+    "description": "Multistorey Apartment for Sale in Shela, Ahmedabad. Covered area is 1725.0 Sq-ft. This property belongs to \"Elenza Gradient\" .",
+    "timestamp": "2024-11-28T13:52:30.309957"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "4 BHK Flat for Sale in Rajshree Regalia, Gota, Ahmedabad",
+    "price": 15400000.0,
+    "area": {
+      "value": 3240.0,
+      "unit": "sqft"
+    },
+    "location": "Rajshree Regalia",
+    "description": "Multistorey Apartment for Sale in Gota, Ahmedabad. Covered area is 3240.0 Sq-ft. This property belongs to \"Rajshree Regalia\" .",
+    "timestamp": "2024-11-28T13:52:30.310956"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "3 BHK Flat for Sale in VR Reflection, Shela, Ahmedabad",
+    "price": 7900000.0,
+    "area": {
+      "value": 1750.0,
+      "unit": "sqft"
+    },
+    "location": "VR Reflection",
+    "description": "Multistorey Apartment for Sale in Shela, Ahmedabad. Covered area is 1750.0 Sq-ft. This property belongs to \"VR Reflection\" .",
+    "timestamp": "2024-11-28T13:52:30.310956"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "4 BHK Flat for Sale in Saayam, Shilaj, Ahmedabad",
+    "price": 15400000.0,
+    "area": {
+      "value": 1700.0,
+      "unit": "sqft"
+    },
+    "location": "Saayam",
+    "description": "Multistorey Apartment for Sale in Shilaj, Ahmedabad. Covered area is 3320.0 Sq-ft. This property belongs to \"Saayam\" .",
+    "timestamp": "2024-11-28T13:52:30.310956"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "3 BHK Flat for Sale in Artiz Arcelia, Shilaj, Ahmedabad",
+    "price": 9130000.0,
+    "area": {
+      "value": 1056.0,
+      "unit": "sqft"
+    },
+    "location": "Artiz Arcelia",
+    "description": "Multistorey Apartment for Sale in Shilaj, Ahmedabad. Covered area is 1760.0 Sq-ft. This property belongs to \"Artiz Arcelia\" .",
+    "timestamp": "2024-11-28T13:52:30.311956"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "4 BHK Flat for Sale in The Emberlynn, Ambli Bopal Road, Ahmedabad",
+    "price": 65900000.0,
+    "area": {
+      "value": 3458.0,
+      "unit": "sqft"
+    },
+    "location": "The Emberlynn",
+    "description": "Multistorey Apartment for Sale in Ambli Bopal Road, Ahmedabad. Covered area is 6592.0 Sq-ft. This property belongs to \"The Emberlynn\" .",
+    "timestamp": "2024-11-28T13:52:30.311956"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "3 BHK Flat for Sale in Kavisha The Portrait, Shela, Ahmedabad",
+    "price": 10100000.0,
+    "area": {
+      "value": 1035.0,
+      "unit": "sqft"
+    },
+    "location": "Kavisha The Portrait",
+    "description": "Multistorey Apartment for Sale in Shela, Ahmedabad. Covered area is 1035.0 Sq-ft. This property belongs to \"Kavisha The Portrait\" .",
+    "timestamp": "2024-11-28T13:52:30.311956"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "3 BHK Flat for Sale in Elenza Gradient, Shela, Ahmedabad",
+    "price": 6880000.0,
+    "area": {
+      "value": 836.0,
+      "unit": "sqft"
+    },
+    "location": "Elenza Gradient",
+    "description": "Multistorey Apartment for Sale in Shela, Ahmedabad. Covered area is 1725.0 Sq-ft. This property belongs to \"Elenza Gradient\" .",
+    "timestamp": "2024-11-28T13:52:30.312956"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "4 BHK Flat for Sale in Shilp Residency, Gota, Ahmedabad",
+    "price": 33000000.0,
+    "area": {
+      "value": 2775.0,
+      "unit": "sqft"
+    },
+    "location": "Shilp Residency",
+    "description": "Penthouse for Sale in Gota, Ahmedabad. Covered area is 5045.0 Sq-ft. This property belongs to \"Shilp Residency\" .",
+    "timestamp": "2024-11-28T13:52:30.313461"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "4 BHK Flat for Sale in Green Park, Sanathal, Ahmedabad",
+    "price": 33500000.0,
+    "area": {
+      "value": 3555.0,
+      "unit": "sqft"
+    },
+    "location": "Green Park",
+    "description": "Multistorey Apartment for Sale in Sanathal, Ahmedabad. Covered area is 3555.0 Sq-ft. This property belongs to \"Green Park\" .",
+    "timestamp": "2024-11-28T13:52:30.313461"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "3 BHK Flat for Sale in Eklingji satvam, Daskroi, Ahmedabad",
+    "price": 9800000.0,
+    "area": {
+      "value": 968.0,
+      "unit": "sqft"
+    },
+    "location": "Eklingji satvam",
+    "description": "Multistorey Apartment for Sale in Daskroi, Ahmedabad. Covered area is 1795.0 Sq-ft. This property belongs to \"Eklingji satvam\" .",
+    "timestamp": "2024-11-28T13:52:30.313461"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "3 BHK Flat for Sale in VR Reflection, Shela, Ahmedabad",
+    "price": 7900000.0,
+    "area": {
+      "value": 1750.0,
+      "unit": "sqft"
+    },
+    "location": "VR Reflection",
+    "description": "Multistorey Apartment for Sale in Shela, Ahmedabad. Covered area is 1750.0 Sq-ft. This property belongs to \"VR Reflection\" .",
+    "timestamp": "2024-11-28T13:52:30.314466"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "4 BHK Flat for Sale in HR Eliseo, Shela, Ahmedabad",
+    "price": 12700000.0,
+    "area": {
+      "value": 1554.0,
+      "unit": "sqft"
+    },
+    "location": "HR Eliseo",
+    "description": "Multistorey Apartment for Sale in Shela, Ahmedabad. Covered area is 2825.0 Sq-ft. This property belongs to \"HR Eliseo\" .",
+    "timestamp": "2024-11-28T13:52:30.314466"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "4 BHK Flat for Sale in Ideal Imprint, Jagatpur, Ahmedabad",
+    "price": 17200000.0,
+    "area": {
+      "value": 1856.0,
+      "unit": "sqft"
+    },
+    "location": "Ideal Imprint",
+    "description": "Multistorey Apartment for Sale in Jagatpur, Ahmedabad. Covered area is 3375.0 Sq-ft. This property belongs to \"Ideal Imprint\" .",
+    "timestamp": "2024-11-28T13:52:30.314466"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "3 BHK Flat for Sale in Shantam Parmeshwar, Gota, Ahmedabad",
+    "price": 12000000.0,
+    "area": {
+      "value": 1300.0,
+      "unit": "sqft"
+    },
+    "location": "Shantam Parmeshwar",
+    "description": "Multistorey Apartment for Sale in Gota, Ahmedabad. Covered area is 2286.0 Sq-ft. This property belongs to \"Shantam Parmeshwar\" .",
+    "timestamp": "2024-11-28T13:52:30.315466"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "3 BHK Flat for Sale in Sun Urban Park, Daskroi, Ahmedabad",
+    "price": 8800000.0,
+    "area": {
+      "value": 968.0,
+      "unit": "sqft"
+    },
+    "location": "Sun Urban Park",
+    "description": "Multistorey Apartment for Sale in Daskroi, Ahmedabad. Covered area is 1760.0 Sq-ft. This property belongs to \"Sun Urban Park\" .",
+    "timestamp": "2024-11-28T13:52:30.315466"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "5 BHK Flat for Sale in Venus Pashmina, Bodakdev, Ahmedabad",
+    "price": 77400000.0,
+    "area": {
+      "value": 7740.0,
+      "unit": "sqft"
+    },
+    "location": "Venus Pashmina",
+    "description": "Multistorey Apartment for Sale in Bodakdev, Ahmedabad. Covered area is 7740.0 Sq-ft. This property belongs to \"Venus Pashmina\" .",
+    "timestamp": "2024-11-28T13:52:30.315466"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "4 BHK Flat for Sale in HR Eliseo, Shela, Ahmedabad",
+    "price": 12700000.0,
+    "area": {
+      "value": 1554.0,
+      "unit": "sqft"
+    },
+    "location": "HR Eliseo",
+    "description": "Multistorey Apartment for Sale in Shela, Ahmedabad. Covered area is 2825.0 Sq-ft. This property belongs to \"HR Eliseo\" .",
+    "timestamp": "2024-11-28T13:52:30.316466"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "4 BHK Flat for Sale in THE REGAL, Vaishnodevi Circle, Ahmedabad",
+    "price": 25200000.0,
+    "area": {
+      "value": 5599.0,
+      "unit": "sqft"
+    },
+    "location": "THE REGAL",
+    "description": "Penthouse for Sale in Vaishnodevi Circle, Ahmedabad. Covered area is 5599.0 Sq-ft. This property belongs to \"THE REGAL\" .",
+    "timestamp": "2024-11-28T13:52:30.316466"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "5 BHK Flat for Sale in Times 40, Bodakdev, Ahmedabad",
+    "price": 57400000.0,
+    "area": {
+      "value": 3500.0,
+      "unit": "sqft"
+    },
+    "location": "Times 40",
+    "description": "Multistorey Apartment for Sale in Bodakdev, Ahmedabad. Covered area is 6500.0 Sq-ft. This property belongs to \"Times 40\" .",
+    "timestamp": "2024-11-28T13:52:30.316466"
+  },
+  {
+    "source": "magicbricks",
+    "city": "ahmedabad",
+    "title": "3 BHK Flat for Sale in Ivory Orchards, Shilaj, Ahmedabad",
+    "price": 8000000.0,
+    "area": {
+      "value": 861.0,
+      "unit": "sqft"
+    },
+    "location": "Ivory Orchards",
+    "description": "Multistorey Apartment for Sale in Shilaj, Ahmedabad. Covered area is 861.0 Sq-ft. This property belongs to \"Ivory Orchards\" .",
+    "timestamp": "2024-11-28T13:52:30.317466"
+  }
+]
