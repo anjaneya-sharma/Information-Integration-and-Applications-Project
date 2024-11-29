@@ -3,7 +3,6 @@ import numpy as np
 from pathlib import Path
 
 def create_directory_structure():
-    """Create necessary directories if they don't exist"""
     Path("data/source 2/normalized").mkdir(parents=True, exist_ok=True)
 
 def normalize_real_estate_data(input_file_path):
@@ -11,54 +10,41 @@ def normalize_real_estate_data(input_file_path):
     df = pd.read_csv(input_file_path)
     print(f"Initial data rows: {len(df)}")
     
-    # Handle Balcony as categorical Yes/No
-    df['Balcony'] = df['Balcony'].map({'Yes': 1, 'No': 0}).fillna(0)
-    print(f"Balcony values count:\n{df['Balcony'].value_counts()}")
-    
-    # Convert other numeric columns
-    numeric_columns = ['Price', 'Total_Area(SQFT)', 'Price_per_SQFT', 'Total_Rooms', 'BHK']
-    for col in numeric_columns:
-        df[col] = pd.to_numeric(df[col], errors='coerce')
-        print(f"Column {col} non-null count: {df[col].count()}")
-    
-    # Include Balcony in required columns
-    required_columns = ['Property_Name', 'Location', 'city', 'property_type', 'Balcony'] + numeric_columns
+    # Keep ALL original columns
+    required_columns = [
+        'Property_Name',
+        'Property Title',
+        'Price',
+        'Location',
+        'Total_Area(SQFT)',
+        'Price_per_SQFT',
+        'Description',
+        'Total_Rooms',
+        'Balcony',
+        'city',
+        'property_type',
+        'BHK'
+    ]
     
     df_cleaned = df[required_columns]
     print(f"After selecting required columns: {len(df_cleaned)} rows")
     
-    df_cleaned = df_cleaned.fillna({
-        'Property_Name': 'Unknown',
-        'Location': 'Unknown',
-        'city': 'Unknown',
-        'property_type': 'Unknown',
-        'Balcony': 0  # Fill missing Balcony with 0
-    })
-    
-    df_cleaned = df_cleaned.dropna(subset=numeric_columns, how='all')
-    print(f"After cleaning: {len(df_cleaned)} rows")
-    
-    # Create dimension tables (excluding Balcony)
+    # Create dimension tables
     dim_property_types = df_cleaned[['property_type']].drop_duplicates()
     dim_property_types['property_type_id'] = range(1, len(dim_property_types) + 1)
-    print(f"Property types: {len(dim_property_types)}")
     
     dim_cities = df_cleaned[['city']].drop_duplicates()
     dim_cities['city_id'] = range(1, len(dim_cities) + 1)
-    print(f"Cities: {len(dim_cities)}")
     
     dim_locations = df_cleaned[['Location', 'city']].drop_duplicates()
     dim_locations = dim_locations.merge(dim_cities, on='city', how='left')
     dim_locations['location_id'] = range(1, len(dim_locations) + 1)
     dim_locations = dim_locations[['location_id', 'Location', 'city_id']]
-    print(f"Locations: {len(dim_locations)}")
     
-    # Room dimension without Balcony
     dim_rooms = df_cleaned[['Total_Rooms', 'BHK']].drop_duplicates()
     dim_rooms['room_config_id'] = range(1, len(dim_rooms) + 1)
-    print(f"Room configurations: {len(dim_rooms)}")
     
-    # Update fact table merges and include Balcony
+    # Create fact table with ALL original attributes
     fact_properties = df_cleaned.merge(
         dim_property_types, on='property_type', how='left'
     ).merge(
@@ -67,13 +53,27 @@ def normalize_real_estate_data(input_file_path):
         dim_rooms, on=['Total_Rooms', 'BHK'], how='left'
     )
     
+    # Include ALL original columns plus the generated IDs
     fact_columns = [
-        'Property_Name', 'Price', 'Total_Area(SQFT)', 'Price_per_SQFT',
-        'property_type_id', 'location_id', 'room_config_id', 'Location', 'Balcony'
+        'Property_Name',
+        'Property Title',
+        'Price',
+        'Total_Area(SQFT)',
+        'Price_per_SQFT',
+        'property_type_id',
+        'location_id',
+        'room_config_id',
+        'Location',
+        'Balcony',
+        'Description',
+        'Total_Rooms',
+        'BHK',
+        'city',
+        'property_type'
     ]
+    
     fact_properties = fact_properties[fact_columns]
     fact_properties['property_id'] = range(1, len(fact_properties) + 1)
-    print(f"Fact table rows: {len(fact_properties)}")
     
     return {
         'original_data': df_cleaned,
@@ -87,7 +87,7 @@ def normalize_real_estate_data(input_file_path):
 def test_normalization(tables):
     test_results = {}
     
-    # Basic validation tests remain the same
+    # Basic validation tests
     test_results['row_count_match'] = len(tables['original_data']) == len(tables['fact_properties'])
     test_results['no_missing_foreign_keys'] = not any([
         tables['fact_properties']['property_type_id'].isnull().any(),
@@ -106,20 +106,23 @@ def test_normalization(tables):
     ])
     
     try:
-        # Reconstruct data without Balcony
-        reconstructed_data = tables['fact_properties'].merge(
-            tables['dim_property_types'][['property_type_id', 'property_type']],
-            on='property_type_id',
-            how='left'
-        ).merge(
-            tables['dim_locations'][['location_id', 'Location']],
-            on=['location_id', 'Location'],
-            how='left'
-        ).merge(
-            tables['dim_rooms'][['room_config_id', 'Total_Rooms', 'BHK']],  # Removed Balcony
-            on='room_config_id',
-            how='left'
-        )
+        # Use fact_properties directly since it already contains all needed columns
+        reconstructed_data = tables['fact_properties']
+        
+        compare_columns = [
+            'Property_Name',
+            'Property Title',
+            'Price',
+            'Location',
+            'Total_Area(SQFT)',
+            'Price_per_SQFT',
+            'Description',
+            'Total_Rooms',
+            'Balcony',
+            'city',
+            'property_type',
+            'BHK'
+        ]
         
         # Sample with consistent indices
         sample_size = min(10, len(tables['original_data']))
@@ -131,11 +134,11 @@ def test_normalization(tables):
         
         original_samples = tables['original_data'][
             tables['original_data']['Property_Name'].isin(sample_properties)
-        ].sort_values('Property_Name')
+        ].sort_values('Property_Name')[compare_columns]
         
         reconstructed_samples = reconstructed_data[
             reconstructed_data['Property_Name'].isin(sample_properties)
-        ].sort_values('Property_Name')
+        ].sort_values('Property_Name')[compare_columns]
         
         # Compare attributes with aligned samples
         attributes_match = all([

@@ -48,6 +48,7 @@ def create_tables(conn):
             CREATE TABLE properties (
                 property_id SERIAL PRIMARY KEY,
                 Property_Name VARCHAR(255),
+                Property_Title VARCHAR(255),
                 Price NUMERIC,
                 Total_Area_SQFT NUMERIC,
                 Price_per_SQFT NUMERIC,
@@ -55,6 +56,7 @@ def create_tables(conn):
                 location_id INT,
                 room_config_id INT,
                 Location VARCHAR(255),
+                Description TEXT,
                 Balcony BOOLEAN,
                 FOREIGN KEY (property_type_id) REFERENCES property_types(property_type_id),
                 FOREIGN KEY (location_id) REFERENCES locations(location_id),
@@ -73,22 +75,48 @@ def populate_source_2(conn):
 
     with conn.cursor() as cur:
         for _, row in cities_df.iterrows():
-            cur.execute("INSERT INTO cities (city, city_id) VALUES (%s, %s)", (row['city'], int(row['city_id']) if not pd.isna(row['city_id']) else None))
+            cur.execute("INSERT INTO cities (city, city_id) VALUES (%s, %s)", 
+                      (row['city'], int(row['city_id']) if not pd.isna(row['city_id']) else None))
 
         for _, row in locations_df.iterrows():
-            cur.execute("INSERT INTO locations (location_id, Location, city_id) VALUES (%s, %s, %s)", (int(row['location_id']) if not pd.isna(row['location_id']) else None, row['Location'], int(row['city_id']) if not pd.isna(row['city_id']) else None))
+            cur.execute("INSERT INTO locations (location_id, Location, city_id) VALUES (%s, %s, %s)", 
+                      (int(row['location_id']) if not pd.isna(row['location_id']) else None, 
+                       row['Location'], 
+                       int(row['city_id']) if not pd.isna(row['city_id']) else None))
 
         for _, row in property_types_df.iterrows():
-            cur.execute("INSERT INTO property_types (property_type_id, property_type) VALUES (%s, %s)", (int(row['property_type_id']) if not pd.isna(row['property_type_id']) else None, row['property_type']))
+            cur.execute("INSERT INTO property_types (property_type_id, property_type) VALUES (%s, %s)", 
+                      (int(row['property_type_id']) if not pd.isna(row['property_type_id']) else None, 
+                       row['property_type']))
 
         for _, row in rooms_df.iterrows():
-            cur.execute("INSERT INTO rooms (room_config_id, Total_Rooms, BHK) VALUES (%s, %s, %s)", (int(row['room_config_id']) if not pd.isna(row['room_config_id']) else None, int(row['Total_Rooms']) if not pd.isna(row['Total_Rooms']) else None, int(row['BHK']) if not pd.isna(row['BHK']) else None))
+            cur.execute("INSERT INTO rooms (room_config_id, Total_Rooms, BHK) VALUES (%s, %s, %s)", 
+                      (int(row['room_config_id']) if not pd.isna(row['room_config_id']) else None,
+                       int(row['Total_Rooms']) if not pd.isna(row['Total_Rooms']) else None,
+                       int(row['BHK']) if not pd.isna(row['BHK']) else None))
 
         for _, row in properties_df.iterrows():
             cur.execute("""
-                INSERT INTO properties (property_id, Property_Name, Price, Total_Area_SQFT, Price_per_SQFT, property_type_id, location_id, room_config_id, Location, Balcony)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-            """, (int(row['property_id']) if not pd.isna(row['property_id']) else None, row['Property_Name'], float(row['Price']) if not pd.isna(row['Price']) else None, float(row['Total_Area(SQFT)']) if not pd.isna(row['Total_Area(SQFT)']) else None, float(row['Price_per_SQFT']) if not pd.isna(row['Price_per_SQFT']) else None, int(row['property_type_id']) if not pd.isna(row['property_type_id']) else None, int(row['location_id']) if not pd.isna(row['location_id']) else None, int(row['room_config_id']) if not pd.isna(row['room_config_id']) else None, row['Location'], bool(row['Balcony']) if not pd.isna(row['Balcony']) else None))
+                INSERT INTO properties (
+                    property_id, Property_Name, Property_Title, Price, Total_Area_SQFT, 
+                    Price_per_SQFT, property_type_id, location_id, room_config_id, 
+                    Location, Description, Balcony
+                )
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """, (
+                int(row['property_id']) if not pd.isna(row['property_id']) else None,
+                row['Property_Name'],
+                row.get('Property_Title', None),  # Handle missing column
+                float(row['Price']) if not pd.isna(row['Price']) else None,
+                float(row['Total_Area(SQFT)']) if not pd.isna(row['Total_Area(SQFT)']) else None,
+                float(row['Price_per_SQFT']) if not pd.isna(row['Price_per_SQFT']) else None,
+                int(row['property_type_id']) if not pd.isna(row['property_type_id']) else None,
+                int(row['location_id']) if not pd.isna(row['location_id']) else None,
+                int(row['room_config_id']) if not pd.isna(row['room_config_id']) else None,
+                row['Location'],
+                row.get('Description', None),  # Handle missing column
+                bool(row['Balcony']) if not pd.isna(row['Balcony']) else None
+            ))
 
         conn.commit()
 
@@ -98,6 +126,7 @@ password = "admin"
 host = "localhost"
 port = "5432"
 
+# Connect to default postgres database to create new database
 conn = psycopg2.connect(
     dbname="postgres",
     user=user,
@@ -112,6 +141,7 @@ try:
 finally:
     conn.close()
 
+# Connect to newly created database
 conn = psycopg2.connect(
     dbname=dbname,
     user=user,
