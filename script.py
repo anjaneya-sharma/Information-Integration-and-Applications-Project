@@ -4,70 +4,7 @@ from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
-# def get_unified_query(query_conditions_source_2, query_conditions_source_3):
-#     query = sql.SQL("""
-#         SELECT * FROM (
-#             SELECT 
-#                 COALESCE(p.property_name, 'Unknown') AS Property_Name,
-#                 p.property_title AS Property_Title,
-#                 COALESCE(pt.property_type, 'Not Specified') AS Property_Type,
-#                 COALESCE(p.price, 0) AS Price,
-#                 COALESCE(p.total_area_sqft, 0) AS Total_Area,
-#                 COALESCE(c.city, 'Unknown') AS City,
-#                 COALESCE(l.location, 'Unknown') AS Location,
-#                 COALESCE(p.price_per_sqft, 0) AS Price_per_SQFT,
-#                 COALESCE(p.description, 'No description available') AS Description,
-#                 COALESCE(r.total_rooms, 0) AS Number_Of_Rooms,
-#                 COALESCE(p.balcony, false) AS Number_Of_Balconies,
-#                 'source_2' as source
-#             FROM properties p
-#             LEFT JOIN locations l ON p.location_id = l.location_id
-#             LEFT JOIN cities c ON l.city_id = c.city_id
-#             LEFT JOIN property_types pt ON p.property_type_id = pt.property_type_id
-#             LEFT JOIN rooms r ON p.room_config_id = r.room_config_id
-#             WHERE {}
-        
-#             UNION ALL
-        
-#             SELECT 
-#                 COALESCE(p.name, 'Unknown') AS Property_Name,
-#                 COALESCE(p.title, 'No title') AS Property_Title,
-#                 'Not Specified' AS Property_Type,
-#                 COALESCE((
-#                     CASE 
-#                         WHEN position('Cr' in pr.price) > 0 
-#                         THEN TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'Cr.*$', ''))::numeric * 10000000
-#                         WHEN position('L' in pr.price) > 0 
-#                         THEN TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'L.*$', ''))::numeric * 100000
-#                         WHEN position('k' in pr.price) > 0 
-#                         THEN TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'k.*$', ''))::numeric * 1000
-#                         WHEN position('acs' in pr.price) > 0 
-#                         THEN TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'acs.*$', ''))::numeric * 100000
-#                         ELSE TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, '[^0-9.]', ''))::numeric
-#                     END
-#                 ), 0) AS Price,
-#                 COALESCE(p.total_area, 0) AS Total_Area,
-#                 'Unknown' AS City,
-#                 COALESCE(l.location, 'Unknown') AS Location,
-#                 COALESCE(pr.price_per_sqft, 0) AS Price_per_SQFT,
-#                 COALESCE(p.description, 'No description available') AS Description,
-#                 COALESCE(f.baths, 0) AS Number_Of_Rooms,
-#                 COALESCE(f.balcony, false) AS Number_Of_Balconies,
-#                 'source_3' as source
-#             FROM source3.properties p
-#             LEFT JOIN source3.location l ON p.locationid = l.locationid
-#             LEFT JOIN source3.pricing pr ON p.propertyid = pr.propertyid
-#             LEFT JOIN source3.features f ON p.propertyid = f.propertyid
-#             WHERE {}
-#         ) AS unified_properties
-#         ORDER BY Price DESC, Total_Area DESC
-#     """).format(
-#         sql.SQL(query_conditions_source_2),
-#         sql.SQL(query_conditions_source_3)
-#     )
-#     return query
-
-def get_unified_query(query_conditions_source_2, query_conditions_source_3):
+def get_unified_query(conn, query_conditions_source_2, query_conditions_source_3):
     query = sql.SQL("""
         SELECT * FROM (
             (
@@ -101,14 +38,12 @@ def get_unified_query(query_conditions_source_2, query_conditions_source_3):
                     COALESCE((
                         CASE 
                             WHEN position('Cr' in pr.price) > 0 
-                            THEN TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'Cr.*$', ''))::numeric * 10000000
+                                THEN TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'Cr.*$', ''))::numeric * 10000000
                             WHEN position('L' in pr.price) > 0 
-                            THEN TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'L.*$', ''))::numeric * 100000
+                                THEN TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'L.*$', ''))::numeric * 100000
                             WHEN position('k' in pr.price) > 0 
-                            THEN TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'k.*$', ''))::numeric * 1000
-                            WHEN position('acs' in pr.price) > 0 
-                            THEN TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'acs.*$', ''))::numeric * 100000
-                            ELSE TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, '[^0-9.]', ''))::numeric
+                                THEN TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'k.*$', ''))::numeric * 1000
+                            ELSE TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, '[^0-9.]', '', 'g'))::numeric
                         END
                     ), 0) AS Price,
                     COALESCE(p.total_area, 0) AS Total_Area,
@@ -133,9 +68,9 @@ def get_unified_query(query_conditions_source_2, query_conditions_source_3):
         source_2_conditions=sql.SQL(query_conditions_source_2),
         source_3_conditions=sql.SQL(query_conditions_source_3)
     )
+    print("Generated SQL Query:", query.as_string(conn))
     return query
 
-    
 def query_global_properties(query_conditions_source_2, query_conditions_source_3):
     conn_source_2 = psycopg2.connect(
         dbname="real_estate_db_source_2",
@@ -147,10 +82,15 @@ def query_global_properties(query_conditions_source_2, query_conditions_source_3
 
     try:
         with conn_source_2.cursor() as cur:
-            unified_query = get_unified_query(query_conditions_source_2, query_conditions_source_3)
+            unified_query = get_unified_query(conn_source_2, query_conditions_source_2, query_conditions_source_3)
+            print("Executing Query...")
             cur.execute(unified_query)
             results = cur.fetchall()
+            print("Query Results:", results)
             return results
+    except Exception as e:
+        print("Error executing query:", e)
+        return []  # Return an empty list in case of an error
     finally:
         conn_source_2.close()
 
@@ -203,22 +143,22 @@ def index():
             query_conditions_source_3.append(f"""
                 COALESCE(
                     CASE 
-                        WHEN pr.price LIKE '%Cr%' THEN (REPLACE(REPLACE(REPLACE(pr.price, '₹', ''), ' Cr', ''), ' ', '')::numeric) * 10000000 
-                        WHEN pr.price LIKE '%L%' THEN (REPLACE(REPLACE(REPLACE(pr.price, '₹', ''), ' L', ''), ' ', '')::numeric) * 100000 
-                        WHEN pr.price LIKE '%acs%' THEN (REPLACE(REPLACE(REPLACE(pr.price, '₹', ''), ' acs', ''), ' ', '')::numeric) * 100000
-                        ELSE REPLACE(REPLACE(pr.price, '₹', ''), ' ', '')::numeric 
+                        WHEN pr.price LIKE '%Cr%' THEN (TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'Cr.*$', ''))::numeric) * 10000000 
+                        WHEN pr.price LIKE '%L%' THEN (TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'L.*$', ''))::numeric) * 100000 
+                        WHEN pr.price LIKE '%k%' THEN (TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'k.*$', ''))::numeric) * 1000
+                        ELSE TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, '[^0-9.]', '', 'g'))::numeric 
                     END, 0) >= {form_data['min_price']}
             """)
-
+    
         if form_data['max_price']:
             query_conditions_source_2.append(f"COALESCE(p.price, 0) <= {form_data['max_price']}")
             query_conditions_source_3.append(f"""
                 COALESCE(
                     CASE 
-                        WHEN pr.price LIKE '%Cr%' THEN (REPLACE(REPLACE(REPLACE(pr.price, '₹', ''), ' Cr', ''), ' ', '')::numeric) * 10000000 
-                        WHEN pr.price LIKE '%L%' THEN (REPLACE(REPLACE(REPLACE(pr.price, '₹', ''), ' L', ''), ' ', '')::numeric) * 100000 
-                        WHEN pr.price LIKE '%acs%' THEN (REPLACE(REPLACE(REPLACE(pr.price, '₹', ''), ' acs', ''), ' ', '')::numeric) * 100000
-                        ELSE REPLACE(REPLACE(pr.price, '₹', ''), ' ', '')::numeric 
+                        WHEN pr.price LIKE '%Cr%' THEN (TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'Cr.*$', ''))::numeric) * 10000000 
+                        WHEN pr.price LIKE '%L%' THEN (TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'L.*$', ''))::numeric) * 100000 
+                        WHEN pr.price LIKE '%k%' THEN (TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'k.*$', ''))::numeric) * 1000
+                        ELSE TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, '[^0-9.]', '', 'g'))::numeric 
                     END, 0) <= {form_data['max_price']}
             """)
             
@@ -245,7 +185,11 @@ def index():
         query_conditions_source_2 = " AND ".join(query_conditions_source_2) if query_conditions_source_2 else "1=1"
         query_conditions_source_3 = " AND ".join(query_conditions_source_3) if query_conditions_source_3 else "1=1"
         
+        print("Query Conditions Source 2:", query_conditions_source_2)
+        print("Query Conditions Source 3:", query_conditions_source_3)
+        
         results = query_global_properties(query_conditions_source_2, query_conditions_source_3)
+        results = results if results is not None else []  # Ensure results is a list
         return render_template('index.html', data=results, form=form_data)
     
     return render_template('index.html', data=[], form=form_data)
