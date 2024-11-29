@@ -20,66 +20,75 @@ CONNECTION_PARAMS = {
     }
 }
 
-# Query functions for each source
-def get_source_2_query(conditions):
-    query = f"""
-        SELECT 
-            COALESCE(p.{mapper.get_column('source_2', 'Property_Name')}, 'Unknown') AS Property_Name,
-            p.{mapper.get_column('source_2', 'Property_Title')} AS Property_Title,
-            COALESCE(pt.property_type, 'Not Specified') AS Property_Type,
-            COALESCE(p.{mapper.get_column('source_2', 'Price')}, 0) AS Price,
-            COALESCE(p.{mapper.get_column('source_2', 'Total_Area')}, 0) AS Total_Area,
-            COALESCE(c.city, 'Unknown') AS City,
-            COALESCE(l.location, 'Unknown') AS Location,
-            COALESCE(p.{mapper.get_column('source_2', 'Price_per_SQFT')}, 0) AS Price_per_SQFT,
-            COALESCE(p.description, 'No description available') AS Description,
-            COALESCE(r.total_rooms, 0) AS Number_Of_Rooms,
-            COALESCE(p.{mapper.get_column('source_2', 'Number_Of_Balconies')}, false) AS Number_Of_Balconies,
-            'source_2' as source
-        FROM properties p
-        LEFT JOIN property_types pt ON p.property_type_id = pt.property_type_id
-        LEFT JOIN locations l ON p.location_id = l.location_id
-        LEFT JOIN cities c ON l.city_id = c.city_id
-        LEFT JOIN rooms r ON p.room_config_id = r.room_config_id
-        WHERE {conditions}
-    """
-    return query
+def build_query(source, conditions):
+    """Build standardized query for any source"""
+    if source == 'source_2':
+        return f"""
+            SELECT 
+                COALESCE(p.{mapper.get_column(source, 'Property_Name')}, 'Unknown') AS Property_Name,
+                COALESCE(p.{mapper.get_column(source, 'Property_Title')}, '') AS Property_Title,
+                COALESCE(pt.{mapper.get_column(source, 'Property_Type')}, 'Not Specified') AS Property_Type,
+                COALESCE(p.{mapper.get_column(source, 'Price')}, 0) AS Price,
+                COALESCE(p.{mapper.get_column(source, 'Total_Area')}, 0) AS Total_Area,
+                COALESCE(c.{mapper.get_column(source, 'City')}, 'Unknown') AS City,
+                COALESCE(l.{mapper.get_column(source, 'Location')}, 'Unknown') AS Location,
+                COALESCE(p.{mapper.get_column(source, 'Price_per_SQFT')}, 0) AS Price_per_SQFT,
+                COALESCE(p.{mapper.get_column(source, 'Description')}, 'No description') AS Description,
+                COALESCE(r.{mapper.get_column(source, 'Number_Of_Rooms')}, 0) AS Number_Of_Rooms,
+                COALESCE(p.{mapper.get_column(source, 'Number_Of_Balconies')}, false) AS Number_Of_Balconies,
+                '{source}' as source
+            FROM properties p
+            LEFT JOIN property_types pt ON p.{mapper.get_column(source, 'property_type_id')} = pt.{mapper.get_column(source, 'property_type_id')}
+            LEFT JOIN locations l ON p.{mapper.get_column(source, 'location_id')} = l.{mapper.get_column(source, 'location_id')}
+            LEFT JOIN cities c ON l.{mapper.get_column(source, 'city_id')} = c.{mapper.get_column(source, 'city_id')}
+            LEFT JOIN rooms r ON p.{mapper.get_column(source, 'room_config_id')} = r.{mapper.get_column(source, 'room_config_id')}
+            WHERE {conditions}
+        """
+    else:  # source_3
+        return f"""
+            SELECT 
+                COALESCE(p.{mapper.get_column(source, 'Property_Name')}, 'Unknown') AS Property_Name,
+                COALESCE(p.{mapper.get_column(source, 'Property_Title')}, '') AS Property_Title,
+                'Not Specified' AS Property_Type,
+                COALESCE(
+                    CASE 
+                        WHEN position('Cr' in pr.{mapper.get_column(source, 'Price')}) > 0 
+                            THEN TRIM(BOTH '₹ ' FROM regexp_replace(pr.{mapper.get_column(source, 'Price')}, 'Cr.*$', ''))::numeric * 10000000
+                        WHEN position('L' in pr.{mapper.get_column(source, 'Price')}) > 0 
+                            THEN TRIM(BOTH '₹ ' FROM regexp_replace(pr.{mapper.get_column(source, 'Price')}, 'L.*$', ''))::numeric * 100000
+                        WHEN position('k' in pr.{mapper.get_column(source, 'Price')}) > 0 
+                            THEN TRIM(BOTH '₹ ' FROM regexp_replace(pr.{mapper.get_column(source, 'Price')}, 'k.*$', ''))::numeric * 1000
+                        ELSE TRIM(BOTH '₹ ' FROM regexp_replace(pr.{mapper.get_column(source, 'Price')}, '[^0-9.]', '', 'g'))::numeric
+                    END, 0) AS Price,
+                COALESCE(p.{mapper.get_column(source, 'Total_Area')}, 0) AS Total_Area,
+                'Unknown' AS City,
+                COALESCE(l.{mapper.get_column(source, 'Location')}, 'Unknown') AS Location,
+                COALESCE(pr.{mapper.get_column(source, 'Price_per_SQFT')}, 0) AS Price_per_SQFT,
+                COALESCE(p.{mapper.get_column(source, 'Description')}, 'No description') AS Description,
+                COALESCE(f.{mapper.get_column(source, 'Number_Of_Rooms')}, 0) AS Number_Of_Rooms,
+                COALESCE(f.{mapper.get_column(source, 'Number_Of_Balconies')}, false) AS Number_Of_Balconies,
+                '{source}' as source
+            FROM properties p
+            LEFT JOIN location l ON p.{mapper.get_column(source, 'locationid')} = l.{mapper.get_column(source, 'locationid')}
+            LEFT JOIN pricing pr ON p.{mapper.get_column(source, 'propertyid')} = pr.{mapper.get_column(source, 'propertyid')}
+            LEFT JOIN features f ON p.{mapper.get_column(source, 'propertyid')} = f.{mapper.get_column(source, 'propertyid')}
+            WHERE {conditions}
+            LIMIT 100
+        """
 
-def query_source_3(conditions):
-    query = sql.SQL("""
-        SELECT 
-            COALESCE(p.name, 'Unknown') AS Property_Name,
-            COALESCE(p.title, 'No title') AS Property_Title,
-            'Not Specified' AS Property_Type,
-            COALESCE(
-                CASE 
-                    WHEN position('Cr' in pr.price) > 0 
-                        THEN TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'Cr.*$', ''))::numeric * 10000000
-                    WHEN position('L' in pr.price) > 0 
-                        THEN TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'L.*$', ''))::numeric * 100000
-                    WHEN position('k' in pr.price) > 0 
-                        THEN TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'k.*$', ''))::numeric * 1000
-                    ELSE TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, '[^0-9.]', '', 'g'))::numeric
-                END, 0) AS Price,
-            COALESCE(p.total_area, 0) AS Total_Area,
-            'Unknown' AS City,
-            COALESCE(l.location, 'Unknown') AS Location,
-            COALESCE(pr.price_per_sqft, 0) AS Price_per_SQFT,
-            COALESCE(p.description, 'No description available') AS Description,
-            COALESCE(f.baths, 0) AS Number_Of_Rooms,
-            COALESCE(f.balcony, false) AS Number_Of_Balconies,
-            'source_3' as source
-        FROM properties p
-        LEFT JOIN location l ON p.locationid = l.locationid
-        LEFT JOIN pricing pr ON p.propertyid = pr.propertyid
-        LEFT JOIN features f ON p.propertyid = f.propertyid
-        WHERE {conditions}
-        LIMIT 100
-    """).format(conditions=sql.SQL(conditions))
-    return query
+def get_source_2_query(conditions):
+    return build_query('source_2', conditions)
+
+def get_source_3_query(conditions):
+    return build_query('source_3', conditions)
+
+QUERY_FUNCTIONS = {
+    'source_2': get_source_2_query,
+    'source_3': get_source_3_query
+}
 
 # Mapping of source names to query functions
 QUERY_FUNCTIONS = {
     'source_2': get_source_2_query,
-    'source_3': query_source_3
+    'source_3': get_source_3_query
 }

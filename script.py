@@ -95,6 +95,9 @@ def query_global_properties(query_conditions):
     return results
 
 def remove_duplicates(results):
+    if len(results) <= 1:  # Add check for single or no results
+        return results
+
     df = pd.DataFrame(results, columns=[
         'Property_Name', 'Property_Title', 'Property_Type', 'Price',
         'Total_Area', 'City', 'Location', 'Price_per_SQFT',
