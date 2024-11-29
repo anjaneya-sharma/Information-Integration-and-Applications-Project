@@ -4,69 +4,6 @@ from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
-# def get_unified_query(query_conditions_source_2, query_conditions_source_3):
-#     query = sql.SQL("""
-#         SELECT * FROM (
-#             SELECT 
-#                 COALESCE(p.property_name, 'Unknown') AS Property_Name,
-#                 p.property_title AS Property_Title,
-#                 COALESCE(pt.property_type, 'Not Specified') AS Property_Type,
-#                 COALESCE(p.price, 0) AS Price,
-#                 COALESCE(p.total_area_sqft, 0) AS Total_Area,
-#                 COALESCE(c.city, 'Unknown') AS City,
-#                 COALESCE(l.location, 'Unknown') AS Location,
-#                 COALESCE(p.price_per_sqft, 0) AS Price_per_SQFT,
-#                 COALESCE(p.description, 'No description available') AS Description,
-#                 COALESCE(r.total_rooms, 0) AS Number_Of_Rooms,
-#                 COALESCE(p.balcony, false) AS Number_Of_Balconies,
-#                 'source_2' as source
-#             FROM properties p
-#             LEFT JOIN locations l ON p.location_id = l.location_id
-#             LEFT JOIN cities c ON l.city_id = c.city_id
-#             LEFT JOIN property_types pt ON p.property_type_id = pt.property_type_id
-#             LEFT JOIN rooms r ON p.room_config_id = r.room_config_id
-#             WHERE {}
-        
-#             UNION ALL
-        
-#             SELECT 
-#                 COALESCE(p.name, 'Unknown') AS Property_Name,
-#                 COALESCE(p.title, 'No title') AS Property_Title,
-#                 'Not Specified' AS Property_Type,
-#                 COALESCE((
-#                     CASE 
-#                         WHEN position('Cr' in pr.price) > 0 
-#                         THEN TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'Cr.*$', ''))::numeric * 10000000
-#                         WHEN position('L' in pr.price) > 0 
-#                         THEN TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'L.*$', ''))::numeric * 100000
-#                         WHEN position('k' in pr.price) > 0 
-#                         THEN TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'k.*$', ''))::numeric * 1000
-#                         WHEN position('acs' in pr.price) > 0 
-#                         THEN TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'acs.*$', ''))::numeric * 100000
-#                         ELSE TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, '[^0-9.]', ''))::numeric
-#                     END
-#                 ), 0) AS Price,
-#                 COALESCE(p.total_area, 0) AS Total_Area,
-#                 'Unknown' AS City,
-#                 COALESCE(l.location, 'Unknown') AS Location,
-#                 COALESCE(pr.price_per_sqft, 0) AS Price_per_SQFT,
-#                 COALESCE(p.description, 'No description available') AS Description,
-#                 COALESCE(f.baths, 0) AS Number_Of_Rooms,
-#                 COALESCE(f.balcony, false) AS Number_Of_Balconies,
-#                 'source_3' as source
-#             FROM source3.properties p
-#             LEFT JOIN source3.location l ON p.locationid = l.locationid
-#             LEFT JOIN source3.pricing pr ON p.propertyid = pr.propertyid
-#             LEFT JOIN source3.features f ON p.propertyid = f.propertyid
-#             WHERE {}
-#         ) AS unified_properties
-#         ORDER BY Price DESC, Total_Area DESC
-#     """).format(
-#         sql.SQL(query_conditions_source_2),
-#         sql.SQL(query_conditions_source_3)
-#     )
-#     return query
-
 def get_unified_query(query_conditions_source_2, query_conditions_source_3):
     query = sql.SQL("""
         SELECT * FROM (
