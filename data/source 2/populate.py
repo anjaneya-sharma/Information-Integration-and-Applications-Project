@@ -95,6 +95,7 @@ def populate_source_2(conn):
                        int(row['Total_Rooms']) if not pd.isna(row['Total_Rooms']) else None,
                        int(row['BHK']) if not pd.isna(row['BHK']) else None))
 
+        # In populate_source_2 function, update the properties insert:
         for _, row in properties_df.iterrows():
             cur.execute("""
                 INSERT INTO properties (
@@ -106,7 +107,7 @@ def populate_source_2(conn):
             """, (
                 int(row['property_id']) if not pd.isna(row['property_id']) else None,
                 row['Property_Name'],
-                row.get('Property_Title', None),  # Handle missing column
+                row['Property Title'],  # Changed from Property_Title to match CSV column name
                 float(row['Price']) if not pd.isna(row['Price']) else None,
                 float(row['Total_Area(SQFT)']) if not pd.isna(row['Total_Area(SQFT)']) else None,
                 float(row['Price_per_SQFT']) if not pd.isna(row['Price_per_SQFT']) else None,
@@ -114,10 +115,9 @@ def populate_source_2(conn):
                 int(row['location_id']) if not pd.isna(row['location_id']) else None,
                 int(row['room_config_id']) if not pd.isna(row['room_config_id']) else None,
                 row['Location'],
-                row.get('Description', None),  # Handle missing column
+                row.get('Description', None),
                 bool(row['Balcony']) if not pd.isna(row['Balcony']) else None
             ))
-
         conn.commit()
 
 dbname = "real_estate_db_source_2"

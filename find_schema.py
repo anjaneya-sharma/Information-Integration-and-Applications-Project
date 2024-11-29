@@ -19,7 +19,7 @@ def get_tables_and_columns(conn):
 
 def main():
     conn = psycopg2.connect(
-        dbname="real_estate_db_source_2",
+        dbname="real_estate_db_source_3",
         user="postgres",
         password="admin",
         host="localhost",
