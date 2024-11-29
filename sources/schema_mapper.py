@@ -1,4 +1,3 @@
-# sources/schema_mapper.py
 from difflib import SequenceMatcher
 import json
 from pathlib import Path

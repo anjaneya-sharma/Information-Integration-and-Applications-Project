@@ -1,5 +1,4 @@
 import psycopg2
-from psycopg2 import sql
 from flask import Flask, request, render_template
 import recordlinkage
 import pandas as pd
