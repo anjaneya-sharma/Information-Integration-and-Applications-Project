@@ -1,37 +1,8 @@
 import psycopg2
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 import pandas as pd
-import os
-import platform
+from pathlib import Path
 
-# Set dynamic paths for different operating systems
-def get_library_path():
-    system = platform.system()
-    if system == "Darwin":  # macOS
-        return "/usr/local/opt/libpq/lib"
-    elif system == "Linux":
-        return "/usr/lib/x86_64-linux-gnu"
-    elif system == "Windows":
-        return "C:\\Program Files\\PostgreSQL\\lib"
-    else:
-        raise Exception("Unsupported Operating System")
-
-# Set library path for psycopg2 if needed
-if platform.system() == "Darwin" or platform.system() == "Linux":
-    lib_path = get_library_path()
-    os.environ["LD_LIBRARY_PATH"] = lib_path
-
-# Construct paths dynamically and check if files exist
-def get_file_path(*paths):
-    # Use the directory of the current script as the base directory
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    # Construct the absolute path using base_dir and provided paths
-    file_path = os.path.join(base_dir, *paths)
-    if not os.path.exists(file_path):
-        raise FileNotFoundError(f"File not found: {file_path}")
-    return file_path
-
-# Create Database Function
 def create_database(conn, dbname):
     with conn.cursor() as cur:
         cur.execute(f"SELECT 1 FROM pg_database WHERE datname = '{dbname}'")
@@ -45,7 +16,6 @@ def create_database(conn, dbname):
         cur.execute(f"CREATE DATABASE {dbname}")
         print(f"Database '{dbname}' created.")
 
-# Create Tables Function
 def create_tables(conn):
     with conn.cursor() as cur:
         cur.execute("""
@@ -96,21 +66,13 @@ def create_tables(conn):
         """)
         conn.commit()
 
-# Populate Data Function
-def populate_source_2(conn):
-    # Using get_file_path to construct paths dynamically and validate their existence
-    cities_path = get_file_path('normalized', 'cities.csv')
-    locations_path = get_file_path( 'normalized', 'locations.csv')
-    property_types_path = get_file_path('normalized', 'property_types.csv')
-    rooms_path = get_file_path('normalized', 'rooms.csv')
-    properties_path = get_file_path('normalized', 'properties.csv')
-
-    # Load data from CSV files
-    cities_df = pd.read_csv(cities_path)
-    locations_df = pd.read_csv(locations_path)
-    property_types_df = pd.read_csv(property_types_path)
-    rooms_df = pd.read_csv(rooms_path)
-    properties_df = pd.read_csv(properties_path)
+def populate_source_2(conn, base_dir):
+    # Read data from CSV files
+    cities_df = pd.read_csv(base_dir / 'normalized/cities.csv')
+    locations_df = pd.read_csv(base_dir / 'normalized/locations.csv')
+    property_types_df = pd.read_csv(base_dir / 'normalized/property_types.csv')
+    rooms_df = pd.read_csv(base_dir / 'normalized/rooms.csv')
+    properties_df = pd.read_csv(base_dir / 'normalized/properties.csv')
 
     with conn.cursor() as cur:
         for _, row in cities_df.iterrows():
@@ -145,7 +107,7 @@ def populate_source_2(conn):
             """, (
                 int(row['property_id']) if not pd.isna(row['property_id']) else None,
                 row['Property_Name'],
-                row['Property Title'],
+                row['Property Title'],  # Changed from Property_Title to match CSV column name
                 float(row['Price']) if not pd.isna(row['Price']) else None,
                 float(row['Total_Area(SQFT)']) if not pd.isna(row['Total_Area(SQFT)']) else None,
                 float(row['Price_per_SQFT']) if not pd.isna(row['Price_per_SQFT']) else None,
@@ -158,7 +120,6 @@ def populate_source_2(conn):
             ))
         conn.commit()
 
-# Database connection details
 dbname = "real_estate_db_source_2"
 user = "postgres"
 password = "admin"
@@ -191,6 +152,48 @@ conn = psycopg2.connect(
 
 try:
     create_tables(conn)
-    populate_source_2(conn)
+    base_dir = Path("data/source 2")
+    populate_source_2(conn, base_dir)
 finally:
     conn.close()
+    
+# find all nulls
+
+# SELECT 
+#     COUNT(*) AS total_records,
+#     COUNT(CASE WHEN city IS NULL THEN 1 END) AS null_city,
+#     COUNT(CASE WHEN city_id IS NULL THEN 1 END) AS null_city_id
+# FROM public.cities;
+
+# SELECT 
+#     COUNT(*) AS total_records,
+#     COUNT(CASE WHEN location_id IS NULL THEN 1 END) AS null_location_id,
+#     COUNT(CASE WHEN Location IS NULL THEN 1 END) AS null_location,
+#     COUNT(CASE WHEN city_id IS NULL THEN 1 END) AS null_city_id
+# FROM public.locations;
+
+# SELECT 
+#     COUNT(*) AS total_records,
+#     COUNT(CASE WHEN property_type_id IS NULL THEN 1 END) AS null_property_type_id,
+#     COUNT(CASE WHEN property_type IS NULL THEN 1 END) AS null_property_type
+# FROM public.property_types;
+
+# SELECT 
+#     COUNT(*) AS total_records,
+#     COUNT(CASE WHEN room_config_id IS NULL THEN 1 END) AS null_room_config_id,
+#     COUNT(CASE WHEN Total_Rooms IS NULL THEN 1 END) AS null_total_rooms,
+#     COUNT(CASE WHEN BHK IS NULL THEN 1 END) AS null_bhk
+# FROM public.rooms;
+
+# SELECT 
+#     COUNT(*) AS total_records,
+#     COUNT(CASE WHEN Property_Name IS NULL THEN 1 END) AS null_property_name,
+#     COUNT(CASE WHEN Price IS NULL THEN 1 END) AS null_price,
+#     COUNT(CASE WHEN Total_Area_SQFT IS NULL THEN 1 END) AS null_total_area_sqft,
+#     COUNT(CASE WHEN Price_per_SQFT IS NULL THEN 1 END) AS null_price_per_sqft,
+#     COUNT(CASE WHEN property_type_id IS NULL THEN 1 END) AS null_property_type_id,
+#     COUNT(CASE WHEN location_id IS NULL THEN 1 END) AS null_location_id,
+#     COUNT(CASE WHEN room_config_id IS NULL THEN 1 END) AS null_room_config_id,
+#     COUNT(CASE WHEN Location IS NULL THEN 1 END) AS null_location,
+#     COUNT(CASE WHEN Balcony IS NULL THEN 1 END) AS null_balcony
+# FROM public.properties;
