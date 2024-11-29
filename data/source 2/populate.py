@@ -1,6 +1,7 @@
 import psycopg2
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 import pandas as pd
+from pathlib import Path
 
 def create_database(conn, dbname):
     with conn.cursor() as cur:
@@ -65,13 +66,13 @@ def create_tables(conn):
         """)
         conn.commit()
 
-def populate_source_2(conn):
+def populate_source_2(conn, base_dir):
     # Read data from CSV files
-    cities_df = pd.read_csv('data/source 2/normalized/cities.csv')
-    locations_df = pd.read_csv('data/source 2/normalized/locations.csv')
-    property_types_df = pd.read_csv('data/source 2/normalized/property_types.csv')
-    rooms_df = pd.read_csv('data/source 2/normalized/rooms.csv')
-    properties_df = pd.read_csv('data/source 2/normalized/properties.csv')
+    cities_df = pd.read_csv(base_dir / 'normalized/cities.csv')
+    locations_df = pd.read_csv(base_dir / 'normalized/locations.csv')
+    property_types_df = pd.read_csv(base_dir / 'normalized/property_types.csv')
+    rooms_df = pd.read_csv(base_dir / 'normalized/rooms.csv')
+    properties_df = pd.read_csv(base_dir / 'normalized/properties.csv')
 
     with conn.cursor() as cur:
         for _, row in cities_df.iterrows():
@@ -95,7 +96,6 @@ def populate_source_2(conn):
                        int(row['Total_Rooms']) if not pd.isna(row['Total_Rooms']) else None,
                        int(row['BHK']) if not pd.isna(row['BHK']) else None))
 
-        # In populate_source_2 function, update the properties insert:
         for _, row in properties_df.iterrows():
             cur.execute("""
                 INSERT INTO properties (
@@ -152,7 +152,8 @@ conn = psycopg2.connect(
 
 try:
     create_tables(conn)
-    populate_source_2(conn)
+    base_dir = Path("data/source 2")
+    populate_source_2(conn, base_dir)
 finally:
     conn.close()
     

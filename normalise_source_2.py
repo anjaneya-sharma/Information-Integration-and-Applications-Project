@@ -2,8 +2,8 @@ import pandas as pd
 import numpy as np
 from pathlib import Path
 
-def create_directory_structure():
-    Path("data/source 2/normalized").mkdir(parents=True, exist_ok=True)
+def create_directory_structure(base_dir):
+    (base_dir / "normalized").mkdir(parents=True, exist_ok=True)
 
 def normalize_real_estate_data(input_file_path):
     # Read data
@@ -161,35 +161,39 @@ def test_normalization(tables):
     
     return test_results
     
-def save_normalized_tables(tables):
+def save_normalized_tables(tables, base_dir):
     """Save normalized tables to CSV files"""
     # Create directory if it doesn't exist
-    Path("data/source 2/normalized").mkdir(parents=True, exist_ok=True)
+    normalized_dir = base_dir / "normalized"
+    normalized_dir.mkdir(parents=True, exist_ok=True)
     
     # Save dimension tables
-    tables['dim_property_types'].to_csv('data/source 2/normalized/property_types.csv', index=False)
-    tables['dim_cities'].to_csv('data/source 2/normalized/cities.csv', index=False)
-    tables['dim_locations'].to_csv('data/source 2/normalized/locations.csv', index=False)
-    tables['dim_rooms'].to_csv('data/source 2/normalized/rooms.csv', index=False)
+    tables['dim_property_types'].to_csv(normalized_dir / 'property_types.csv', index=False)
+    tables['dim_cities'].to_csv(normalized_dir / 'cities.csv', index=False)
+    tables['dim_locations'].to_csv(normalized_dir / 'locations.csv', index=False)
+    tables['dim_rooms'].to_csv(normalized_dir / 'rooms.csv', index=False)
     
     # Save fact table
-    tables['fact_properties'].to_csv('data/source 2/normalized/properties.csv', index=False)
+    tables['fact_properties'].to_csv(normalized_dir / 'properties.csv', index=False)
     
     print("\nTables saved successfully:")
     print("-" * 30)
-    print("dim_property_types.csv")
-    print("dim_cities.csv") 
-    print("dim_locations.csv")
-    print("dim_rooms.csv")
-    print("fact_properties.csv")
+    print("property_types.csv")
+    print("cities.csv") 
+    print("locations.csv")
+    print("rooms.csv")
+    print("properties.csv")
 
 def main():
+    base_dir = Path("data/source 2")
+    input_file_path = base_dir / "Indian_Real_Estate_Clean_Data.csv"
+    
     # Run normalization
-    tables = normalize_real_estate_data('data/source 2/Indian_Real_Estate_Clean_Data.csv')
+    tables = normalize_real_estate_data(input_file_path)
     
     # Run tests
     test_results = test_normalization(tables)
-    save_normalized_tables(tables)
+    save_normalized_tables(tables, base_dir)
 
     
     # Display results

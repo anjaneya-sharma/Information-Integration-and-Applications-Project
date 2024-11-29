@@ -1,12 +1,17 @@
 import pandas as pd
 import os
+from pathlib import Path
+
+# Define the base directory
+base_dir = Path('data/source 3')
 
 # Ensure the directory exists
-output_dir = 'data/source 3/normalized'
-os.makedirs(output_dir, exist_ok=True)
+output_dir = base_dir / 'normalized'
+output_dir.mkdir(parents=True, exist_ok=True)
 
 # Read the CSV file
-df = pd.read_csv(r'data/source 3/Real Estate Data V21.csv')
+csv_file = base_dir / 'Real Estate Data V21.csv'
+df = pd.read_csv(csv_file)
 
 # Create Properties DataFrame
 properties_df = df[['Name', 'Property Title', 'Description', 'Location', 'Total_Area']].copy()
@@ -37,10 +42,10 @@ location_df.columns = ['Location', 'LocationID']
 features_df.columns = ['Baths', 'Balcony', 'PropertyID', 'FeatureID']
 
 # Save to CSV files
-properties_df.to_csv('data/source 3/normalized/properties.csv', index=False)
-pricing_df.to_csv('data/source 3/normalized/pricing.csv', index=False)
-location_df.to_csv('data/source 3/normalized/location.csv', index=False)
-features_df.to_csv('data/source 3/normalized/features.csv', index=False)
+properties_df.to_csv(output_dir / 'properties.csv', index=False)
+pricing_df.to_csv(output_dir / 'pricing.csv', index=False)
+location_df.to_csv(output_dir / 'location.csv', index=False)
+features_df.to_csv(output_dir / 'features.csv', index=False)
 
 # Reconstruct the original table for verification
 reconstructed_df = properties_df.merge(location_df, on='LocationID')
@@ -54,3 +59,10 @@ if df.equals(reconstructed_df):
     print("The conversion was correct.")
 else:
     print("The conversion was incorrect.")
+    for column in df.columns:
+        if not df[column].equals(reconstructed_df[column]):
+            print(f"Mismatch found in column: {column}")
+            print("Original DataFrame:")
+            print(df[column].head())
+            print("Reconstructed DataFrame:")
+            print(reconstructed_df[column].head())
