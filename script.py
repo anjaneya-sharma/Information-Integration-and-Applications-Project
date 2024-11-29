@@ -3,98 +3,26 @@ from psycopg2 import sql
 from flask import Flask, request, render_template
 import recordlinkage
 import pandas as pd
+from sources import CONNECTION_PARAMS, QUERY_FUNCTIONS
 
 app = Flask(__name__)
 
-def get_unified_query(conn, query_conditions_source_2, query_conditions_source_3):
-    query = sql.SQL("""
-        SELECT * FROM (
-            (
-                SELECT 
-                    COALESCE(p.property_name, 'Unknown') AS Property_Name,
-                    p.property_title AS Property_Title,
-                    COALESCE(pt.property_type, 'Not Specified') AS Property_Type,
-                    COALESCE(p.price, 0) AS Price,
-                    COALESCE(p.total_area_sqft, 0) AS Total_Area,
-                    COALESCE(c.city, 'Unknown') AS City,
-                    COALESCE(l.location, 'Unknown') AS Location,
-                    COALESCE(p.price_per_sqft, 0) AS Price_per_SQFT,
-                    COALESCE(p.description, 'No description available') AS Description,
-                    COALESCE(r.total_rooms, 0) AS Number_Of_Rooms,
-                    COALESCE(p.balcony, false) AS Number_Of_Balconies,
-                    'source_2' as source
-                FROM properties p
-                LEFT JOIN locations l ON p.location_id = l.location_id
-                LEFT JOIN cities c ON l.city_id = c.city_id
-                LEFT JOIN property_types pt ON p.property_type_id = pt.property_type_id
-                LEFT JOIN rooms r ON p.room_config_id = r.room_config_id
-                WHERE {source_2_conditions}
-                LIMIT 100
-            )
-            UNION ALL
-            (
-                SELECT 
-                    COALESCE(p.name, 'Unknown') AS Property_Name,
-                    COALESCE(p.title, 'No title') AS Property_Title,
-                    'Not Specified' AS Property_Type,
-                    COALESCE((
-                        CASE 
-                            WHEN position('Cr' in pr.price) > 0 
-                                THEN TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'Cr.*$', ''))::numeric * 10000000
-                            WHEN position('L' in pr.price) > 0 
-                                THEN TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'L.*$', ''))::numeric * 100000
-                            WHEN position('k' in pr.price) > 0 
-                                THEN TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'k.*$', ''))::numeric * 1000
-                            ELSE TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, '[^0-9.]', '', 'g'))::numeric
-                        END
-                    ), 0) AS Price,
-                    COALESCE(p.total_area, 0) AS Total_Area,
-                    'Unknown' AS City,
-                    COALESCE(l.location, 'Unknown') AS Location,
-                    COALESCE(pr.price_per_sqft, 0) AS Price_per_SQFT,
-                    COALESCE(p.description, 'No description available') AS Description,
-                    COALESCE(f.baths, 0) AS Number_Of_Rooms,
-                    COALESCE(f.balcony, false) AS Number_Of_Balconies,
-                    'source_3' as source
-                FROM source3.properties p
-                LEFT JOIN source3.location l ON p.locationid = l.locationid
-                LEFT JOIN source3.pricing pr ON p.propertyid = pr.propertyid
-                LEFT JOIN source3.features f ON p.propertyid = f.propertyid
-                WHERE {source_3_conditions}
-                LIMIT 100
-            )
-        ) AS unified_properties
-        ORDER BY Price DESC, Total_Area DESC
-        LIMIT 200
-    """).format(
-        source_2_conditions=sql.SQL(query_conditions_source_2),
-        source_3_conditions=sql.SQL(query_conditions_source_3)
-    )
-    print("Generated SQL Query:", query.as_string(conn))
-    return query
-
-def query_global_properties(query_conditions_source_2, query_conditions_source_3):
-    conn_source_2 = psycopg2.connect(
-        dbname="real_estate_db_source_2",
-        user="postgres",
-        password="admin",
-        host="localhost",
-        port="5432"
-    )
-
-    try:
-        with conn_source_2.cursor() as cur:
-            unified_query = get_unified_query(conn_source_2, query_conditions_source_2, query_conditions_source_3)
-            print("Executing Query...")
-            cur.execute(unified_query)
-            results = cur.fetchall()
-            print("Query Results:", results)
-            return results
-    except Exception as e:
-        print("Error executing query:", e)
-        return []  # Return an empty list in case of an error
-    finally:
-        conn_source_2.close()
+def query_global_properties(query_conditions):
+    results = []
+    for source_name, conn_params in CONNECTION_PARAMS.items():
+        try:
+            conn = psycopg2.connect(**conn_params)
+            query_func = QUERY_FUNCTIONS.get(source_name)
+            if query_func:
+                query = query_func(query_conditions.get(source_name, ""))
+                with conn.cursor() as cur:
+                    cur.execute(query)
+                    results += cur.fetchall()
+            conn.close()
+        except Exception as e:
+            print(f"Error executing query for {source_name}:", e)
+            continue
+    return results
 
 def remove_duplicates(results):
     df = pd.DataFrame(results, columns=[
@@ -165,21 +93,20 @@ def index():
             'hide_duplicates': bool(request.form.get('hide_duplicates', False))
         })
         
-        query_conditions_source_2 = []
-        query_conditions_source_3 = []
+        query_conditions = {source: [] for source in CONNECTION_PARAMS.keys()}
         
         if form_data['property_name']:
-            query_conditions_source_2.append(f"COALESCE(p.property_name, '') ILIKE '%{form_data['property_name']}%'")
-            query_conditions_source_3.append(f"COALESCE(p.name, '') ILIKE '%{form_data['property_name']}%'")
+            query_conditions['source_2'].append(f"COALESCE(p.property_name, '') ILIKE '%{form_data['property_name']}%'")
+            query_conditions['source_3'].append(f"COALESCE(p.name, '') ILIKE '%{form_data['property_name']}%'")
         if form_data['city']:
-            query_conditions_source_2.append(f"COALESCE(c.city, '') ILIKE '%{form_data['city']}%'")
-            query_conditions_source_3.append("1=0")
+            query_conditions['source_2'].append(f"COALESCE(c.city, '') ILIKE '%{form_data['city']}%'")
+            query_conditions['source_3'].append("1=0")  # Source 3 doesn't have city info
         if form_data['location']:
-            query_conditions_source_2.append(f"COALESCE(l.location, '') ILIKE '%{form_data['location']}%'")
-            query_conditions_source_3.append(f"COALESCE(l.location, '') ILIKE '%{form_data['location']}%'")
+            query_conditions['source_2'].append(f"COALESCE(l.location, '') ILIKE '%{form_data['location']}%'")
+            query_conditions['source_3'].append(f"COALESCE(l.location, '') ILIKE '%{form_data['location']}%'")
         if form_data['min_price']:
-            query_conditions_source_2.append(f"COALESCE(p.price, 0) >= {form_data['min_price']}")
-            query_conditions_source_3.append(f"""
+            query_conditions['source_2'].append(f"COALESCE(p.price, 0) >= {form_data['min_price']}")
+            query_conditions['source_3'].append(f"""
                 COALESCE(
                     CASE 
                         WHEN pr.price LIKE '%Cr%' THEN (TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'Cr.*$', ''))::numeric) * 10000000 
@@ -189,8 +116,8 @@ def index():
                     END, 0) >= {form_data['min_price']}
             """)
         if form_data['max_price']:
-            query_conditions_source_2.append(f"COALESCE(p.price, 0) <= {form_data['max_price']}")
-            query_conditions_source_3.append(f"""
+            query_conditions['source_2'].append(f"COALESCE(p.price, 0) <= {form_data['max_price']}")
+            query_conditions['source_3'].append(f"""
                 COALESCE(
                     CASE 
                         WHEN pr.price LIKE '%Cr%' THEN (TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'Cr.*$', ''))::numeric) * 10000000 
@@ -200,25 +127,24 @@ def index():
                     END, 0) <= {form_data['max_price']}
             """)
         if form_data['min_area']:
-            query_conditions_source_2.append(f"COALESCE(p.total_area_sqft, 0) >= {form_data['min_area']}")
-            query_conditions_source_3.append(f"COALESCE(p.total_area, 0) >= {form_data['min_area']}")
+            query_conditions['source_2'].append(f"COALESCE(p.total_area_sqft, 0) >= {form_data['min_area']}")
+            query_conditions['source_3'].append(f"COALESCE(p.total_area, 0) >= {form_data['min_area']}")
         if form_data['max_area']:
-            query_conditions_source_2.append(f"COALESCE(p.total_area_sqft, 0) <= {form_data['max_area']}")
-            query_conditions_source_3.append(f"COALESCE(p.total_area, 0) <= {form_data['max_area']}")
+            query_conditions['source_2'].append(f"COALESCE(p.total_area_sqft, 0) <= {form_data['max_area']}")
+            query_conditions['source_3'].append(f"COALESCE(p.total_area, 0) <= {form_data['max_area']}")
         if form_data['property_type']:
-            query_conditions_source_2.append(f"COALESCE(pt.property_type, '') ILIKE '%{form_data['property_type']}%'")
-            query_conditions_source_3.append("1=0")  # Source 3 doesn't have property type
+            query_conditions['source_2'].append(f"COALESCE(pt.property_type, '') ILIKE '%{form_data['property_type']}%'")
+            query_conditions['source_3'].append("1=0")  # Source 3 doesn't have property type
         if form_data['min_rooms']:
-            query_conditions_source_2.append(f"COALESCE(r.total_rooms, 0) >= {form_data['min_rooms']}")
-            query_conditions_source_3.append("1=0")  # Source 3 doesn't have rooms info
+            query_conditions['source_2'].append(f"COALESCE(r.total_rooms, 0) >= {form_data['min_rooms']}")
+            query_conditions['source_3'].append(f"COALESCE(f.baths, 0) >= {form_data['min_rooms']}")  # Use f.baths for source 3
         if form_data['has_balcony']:
-            query_conditions_source_2.append("COALESCE(p.balcony, false) = true")
-            query_conditions_source_3.append("COALESCE(f.balcony, false) = true")
+            query_conditions['source_2'].append("COALESCE(p.balcony, false) = true")
+            query_conditions['source_3'].append("COALESCE(f.balcony, false) = true")
         
-        query_conditions_source_2 = " AND ".join(query_conditions_source_2) if query_conditions_source_2 else "1=1"
-        query_conditions_source_3 = " AND ".join(query_conditions_source_3) if query_conditions_source_3 else "1=1"
+        query_conditions = {k: " AND ".join(v) if v else "1=1" for k, v in query_conditions.items()}
         
-        results = query_global_properties(query_conditions_source_2, query_conditions_source_3)
+        results = query_global_properties(query_conditions)
         
         if form_data['hide_duplicates']:
             results = remove_duplicates(results)
