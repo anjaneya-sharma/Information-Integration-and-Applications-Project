@@ -254,6 +254,11 @@
                     </div>
                 </div>
 
+                <div class="form-group checkbox-group">
+                    <label for="hide_duplicates">Hide Duplicates</label>
+                    <input type="checkbox" id="hide_duplicates" name="hide_duplicates" {% if form.hide_duplicates %}checked{% endif %}>
+                </div>
+
                 <button type="submit" class="submit-btn">Search</button>
             </form>
         </div>
