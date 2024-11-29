@@ -164,7 +164,7 @@ def index():
         })
         
         query_conditions = {source: [] for source in CONNECTION_PARAMS.keys()}
-        
+                
         # script.py
         if form_data['property_name']:
             # Get mapped column names for each source
@@ -174,53 +174,60 @@ def index():
             query_conditions['source_3'].append(
                 f"COALESCE(p.{mapper.get_column('source_3', 'Property_Name')}, '') ILIKE '%{form_data['property_name']}%'"
             )
-            query_conditions['source_3'].append(f"COALESCE(p.name, '') ILIKE '%{form_data['property_name']}%'")
+
         if form_data['city']:
-            query_conditions['source_2'].append(f"COALESCE(c.city, '') ILIKE '%{form_data['city']}%'")
+            query_conditions['source_2'].append(f"COALESCE(c.{mapper.get_column('source_2', 'City')}, '') ILIKE '%{form_data['city']}%'")
             query_conditions['source_3'].append("1=0")  # Source 3 doesn't have city info
+
         if form_data['location']:
-            query_conditions['source_2'].append(f"COALESCE(l.location, '') ILIKE '%{form_data['location']}%'")
-            query_conditions['source_3'].append(f"COALESCE(l.location, '') ILIKE '%{form_data['location']}%'")
+            query_conditions['source_2'].append(f"COALESCE(l.{mapper.get_column('source_2', 'Location')}, '') ILIKE '%{form_data['location']}%'")
+            query_conditions['source_3'].append(f"COALESCE(l.{mapper.get_column('source_3', 'Location')}, '') ILIKE '%{form_data['location']}%'")
+
         if form_data['min_price']:
-            query_conditions['source_2'].append(f"COALESCE(p.price, 0) >= {form_data['min_price']}")
+            query_conditions['source_2'].append(f"COALESCE(p.{mapper.get_column('source_2', 'Price')}, 0) >= {form_data['min_price']}")
             query_conditions['source_3'].append(f"""
                 COALESCE(
                     CASE 
-                        WHEN pr.price LIKE '%Cr%' THEN (TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'Cr.*$', ''))::numeric) * 10000000 
-                        WHEN pr.price LIKE '%L%' THEN (TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'L.*$', ''))::numeric) * 100000 
-                        WHEN pr.price LIKE '%k%' THEN (TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'k.*$', ''))::numeric) * 1000
-                        ELSE TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, '[^0-9.]', '', 'g'))::numeric 
+                        WHEN pr.{mapper.get_column('source_3', 'Price')} LIKE '%Cr%' THEN (TRIM(BOTH '₹ ' FROM regexp_replace(pr.{mapper.get_column('source_3', 'Price')}, 'Cr.*$', ''))::numeric) * 10000000 
+                        WHEN pr.{mapper.get_column('source_3', 'Price')} LIKE '%L%' THEN (TRIM(BOTH '₹ ' FROM regexp_replace(pr.{mapper.get_column('source_3', 'Price')}, 'L.*$', ''))::numeric) * 100000 
+                        WHEN pr.{mapper.get_column('source_3', 'Price')} LIKE '%k%' THEN (TRIM(BOTH '₹ ' FROM regexp_replace(pr.{mapper.get_column('source_3', 'Price')}, 'k.*$', ''))::numeric) * 1000
+                        ELSE TRIM(BOTH '₹ ' FROM regexp_replace(pr.{mapper.get_column('source_3', 'Price')}, '[^0-9.]', '', 'g'))::numeric 
                     END, 0) >= {form_data['min_price']}
             """)
+
         if form_data['max_price']:
-            query_conditions['source_2'].append(f"COALESCE(p.price, 0) <= {form_data['max_price']}")
+            query_conditions['source_2'].append(f"COALESCE(p.{mapper.get_column('source_2', 'Price')}, 0) <= {form_data['max_price']}")
             query_conditions['source_3'].append(f"""
                 COALESCE(
                     CASE 
-                        WHEN pr.price LIKE '%Cr%' THEN (TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'Cr.*$', ''))::numeric) * 10000000 
-                        WHEN pr.price LIKE '%L%' THEN (TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'L.*$', ''))::numeric) * 100000 
-                        WHEN pr.price LIKE '%k%' THEN (TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, 'k.*$', ''))::numeric) * 1000
-                        ELSE TRIM(BOTH '₹ ' FROM regexp_replace(pr.price, '[^0-9.]', '', 'g'))::numeric 
+                        WHEN pr.{mapper.get_column('source_3', 'Price')} LIKE '%Cr%' THEN (TRIM(BOTH '₹ ' FROM regexp_replace(pr.{mapper.get_column('source_3', 'Price')}, 'Cr.*$', ''))::numeric) * 10000000 
+                        WHEN pr.{mapper.get_column('source_3', 'Price')} LIKE '%L%' THEN (TRIM(BOTH '₹ ' FROM regexp_replace(pr.{mapper.get_column('source_3', 'Price')}, 'L.*$', ''))::numeric) * 100000 
+                        WHEN pr.{mapper.get_column('source_3', 'Price')} LIKE '%k%' THEN (TRIM(BOTH '₹ ' FROM regexp_replace(pr.{mapper.get_column('source_3', 'Price')}, 'k.*$', ''))::numeric) * 1000
+                        ELSE TRIM(BOTH '₹ ' FROM regexp_replace(pr.{mapper.get_column('source_3', 'Price')}, '[^0-9.]', '', 'g'))::numeric 
                     END, 0) <= {form_data['max_price']}
             """)
+
         if form_data['min_area']:
-            query_conditions['source_2'].append(f"COALESCE(p.total_area_sqft, 0) >= {form_data['min_area']}")
-            query_conditions['source_3'].append(f"COALESCE(p.total_area, 0) >= {form_data['min_area']}")
+            query_conditions['source_2'].append(f"COALESCE(p.{mapper.get_column('source_2', 'Total_Area')}, 0) >= {form_data['min_area']}")
+            query_conditions['source_3'].append(f"COALESCE(p.{mapper.get_column('source_3', 'Total_Area')}, 0) >= {form_data['min_area']}")
+
         if form_data['max_area']:
-            query_conditions['source_2'].append(f"COALESCE(p.total_area_sqft, 0) <= {form_data['max_area']}")
-            query_conditions['source_3'].append(f"COALESCE(p.total_area, 0) <= {form_data['max_area']}")
+            query_conditions['source_2'].append(f"COALESCE(p.{mapper.get_column('source_2', 'Total_Area')}, 0) <= {form_data['max_area']}")
+            query_conditions['source_3'].append(f"COALESCE(p.{mapper.get_column('source_3', 'Total_Area')}, 0) <= {form_data['max_area']}")
+
         if form_data['property_type']:
-            query_conditions['source_2'].append(f"COALESCE(pt.property_type, '') ILIKE '%{form_data['property_type']}%'")
+            query_conditions['source_2'].append(f"COALESCE(pt.{mapper.get_column('source_2', 'Property_Type')}, '') ILIKE '%{form_data['property_type']}%'")
             query_conditions['source_3'].append("1=0")  # Source 3 doesn't have property type
+
         if form_data['min_rooms']:
-            query_conditions['source_2'].append(f"COALESCE(r.total_rooms, 0) >= {form_data['min_rooms']}")
-            query_conditions['source_3'].append(f"COALESCE(f.baths, 0) >= {form_data['min_rooms']}")  # Use f.baths for source 3
+            query_conditions['source_2'].append(f"COALESCE(r.{mapper.get_column('source_2', 'Number_Of_Rooms')}, 0) >= {form_data['min_rooms']}")
+            query_conditions['source_3'].append(f"COALESCE(f.{mapper.get_column('source_3', 'Number_Of_Rooms')}, 0) >= {form_data['min_rooms']}")
+
         if form_data['has_balcony']:
-            query_conditions['source_2'].append("COALESCE(p.balcony, false) = true")
-            query_conditions['source_3'].append("COALESCE(f.balcony, false) = true")
+            query_conditions['source_2'].append(f"COALESCE(p.{mapper.get_column('source_2', 'Number_Of_Balconies')}, false) = true")
+            query_conditions['source_3'].append(f"COALESCE(f.{mapper.get_column('source_3', 'Number_Of_Balconies')}, false) = true")        
         
-        query_conditions = {k: " AND ".join(v) if v else "1=1" for k, v in query_conditions.items()}
-        
+        query_conditions = {k: " AND ".join(v) if v else "1=1" for k, v in query_conditions.items()}        
         results = query_global_properties(query_conditions)
         
         if form_data['hide_duplicates']:

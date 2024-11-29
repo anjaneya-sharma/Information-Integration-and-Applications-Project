@@ -53,7 +53,7 @@ class SchemaMapper:
         for col in actual_columns:
             score = SequenceMatcher(None, failed_column.lower(), col.lower()).ratio()
             print(f"Comparing {failed_column} with {col}: score {score}")
-            if score > best_score and score > 0.8:
+            if score > best_score and score >= 0.8:
                 best_score = score
                 best_match = col
                 print(f"New best match: {best_match}")

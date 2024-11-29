@@ -28,7 +28,7 @@
         },
         "columns": {
             "Property_Name": "property_name",
-            "Property_Title": "property_title",
+            "Property_Title": "property_title", 
             "Property_Type": "property_type",
             "Price": "price",
             "Total_Area": "total_area_sqft",
@@ -48,20 +48,17 @@
                 {
                     "table": "location",
                     "alias": "l",
-                    "key": "locationid",
-                    "join_type": "LEFT JOIN"
+                    "key": "locationid"
                 },
                 {
                     "table": "pricing",
                     "alias": "pr",
-                    "key": "propertyid",
-                    "join_type": "LEFT JOIN"
+                    "key": "propertyid"
                 },
                 {
                     "table": "features",
                     "alias": "f",
-                    "key": "propertyid",
-                    "join_type": "LEFT JOIN"
+                    "key": "propertyid"
                 }
             ]
         },
@@ -70,7 +67,7 @@
             "Property_Title": "title",
             "Price": "price",
             "Total_Area": "total_area",
-            "Location": "location",
+            "Location": "location", 
             "Price_per_SQFT": "price_per_sqft",
             "Description": "description",
             "Number_Of_Rooms": "baths",
