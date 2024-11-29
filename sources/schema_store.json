@@ -1,0 +1,80 @@
+{
+    "source_2": {
+        "table_structure": {
+            "main_table": "properties",
+            "main_alias": "p",
+            "joins": [
+                {
+                    "table": "property_types",
+                    "alias": "pt",
+                    "key": "property_type_id"
+                },
+                {
+                    "table": "locations",
+                    "alias": "l",
+                    "key": "location_id"
+                },
+                {
+                    "table": "cities",
+                    "alias": "c",
+                    "key": "city_id"
+                },
+                {
+                    "table": "rooms",
+                    "alias": "r",
+                    "key": "room_config_id"
+                }
+            ]
+        },
+        "columns": {
+            "Property_Name": "property_name",
+            "Property_Title": "property_title",
+            "Property_Type": "property_type",
+            "Price": "price",
+            "Total_Area": "total_area_sqft",
+            "City": "city",
+            "Location": "location",
+            "Price_per_SQFT": "price_per_sqft",
+            "Description": "description",
+            "Number_Of_Rooms": "total_rooms",
+            "Number_Of_Balconies": "balcony"
+        }
+    },
+    "source_3": {
+        "table_structure": {
+            "main_table": "properties",
+            "main_alias": "p",
+            "joins": [
+                {
+                    "table": "location",
+                    "alias": "l",
+                    "key": "locationid",
+                    "join_type": "LEFT JOIN"
+                },
+                {
+                    "table": "pricing",
+                    "alias": "pr",
+                    "key": "propertyid",
+                    "join_type": "LEFT JOIN"
+                },
+                {
+                    "table": "features",
+                    "alias": "f",
+                    "key": "propertyid",
+                    "join_type": "LEFT JOIN"
+                }
+            ]
+        },
+        "columns": {
+            "Property_Name": "name",
+            "Property_Title": "title",
+            "Price": "price",
+            "Total_Area": "total_area",
+            "Location": "location",
+            "Price_per_SQFT": "price_per_sqft",
+            "Description": "description",
+            "Number_Of_Rooms": "baths",
+            "Number_Of_Balconies": "balcony"
+        }
+    }
+}

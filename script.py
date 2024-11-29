@@ -3,25 +3,95 @@ from psycopg2 import sql
 from flask import Flask, request, render_template
 import recordlinkage
 import pandas as pd
-from sources import CONNECTION_PARAMS, QUERY_FUNCTIONS
+from sources import CONNECTION_PARAMS, QUERY_FUNCTIONS, mapper
 
 app = Flask(__name__)
 
 def query_global_properties(query_conditions):
     results = []
     for source_name, conn_params in CONNECTION_PARAMS.items():
-        try:
-            conn = psycopg2.connect(**conn_params)
-            query_func = QUERY_FUNCTIONS.get(source_name)
-            if query_func:
-                query = query_func(query_conditions.get(source_name, ""))
-                with conn.cursor() as cur:
-                    cur.execute(query)
-                    results += cur.fetchall()
-            conn.close()
-        except Exception as e:
-            print(f"Error executing query for {source_name}:", e)
-            continue
+        tries = 0
+        max_tries = 2
+        conn = None
+
+        while tries < max_tries:
+            try:
+                if conn:
+                    conn.close()  # Close any existing connection
+                conn = psycopg2.connect(**conn_params)
+                
+                query_func = QUERY_FUNCTIONS.get(source_name)
+                if query_func:
+                    query = query_func(query_conditions.get(source_name, ""))
+                    print(f"Executing query: {query}")
+                    with conn.cursor() as cur:
+                        cur.execute(query)
+                        results += cur.fetchall()
+                        conn.commit()  # Commit successful transaction
+                    break
+                
+            except psycopg2.Error as e:
+                tries += 1
+                if conn:
+                    conn.rollback()  # Rollback failed transaction
+                
+                error_msg = str(e)
+                if "column" in error_msg.lower() and "does not exist" in error_msg.lower():
+                    print("\n=== Column Error Handling ===")
+                    print(f"Error message: {error_msg}")
+                    
+                    # Extract failed column name
+                    error_line = error_msg.split('\n')[0]
+                    failed_column = error_line.split('column ')[1].split(' ')[0].replace('p.', '')
+                    print(f"Failed column: {failed_column}")
+                    
+                    with conn.cursor() as cur:
+                        cur.execute("""
+                            SELECT column_name 
+                            FROM information_schema.columns 
+                            WHERE table_schema = 'public' 
+                            AND table_name = 'properties'
+                        """)
+                        actual_columns = [row[0] for row in cur.fetchall()]
+                        conn.commit()  # Commit schema query
+                    
+                    print(f"Available columns: {actual_columns}")
+                    
+                    # Use mapper to find matching column
+                    mapped_column = mapper.find_matching_column(source_name, failed_column, actual_columns)
+                    print(f"Mapper returned: {mapped_column}")
+                    
+                    if mapped_column and mapped_column != failed_column:
+                        print(f"Updating query with new mapping: {failed_column} -> {mapped_column}")
+                        # Update schema store
+                        if source_name not in mapper.schema:
+                            mapper.schema[source_name] = {'columns': {}}
+                        for std_name, curr_col in mapper.schema[source_name]['columns'].items():
+                            if curr_col == failed_column:
+                                mapper.schema[source_name]['columns'][std_name] = mapped_column
+                                print(f"Updated schema mapping for {std_name}")
+                        mapper._save_schema()
+                        
+                        # Update query condition
+                        query_conditions[source_name] = query_conditions[source_name].replace(
+                            f"p.{failed_column}", 
+                            f"p.{mapped_column}"
+                        )
+                        continue
+                
+                print(f"Error executing query for {source_name}:", e)
+                break
+                
+            except Exception as e:
+                if conn:
+                    conn.rollback()  # Rollback on any other error
+                print(f"Unexpected error for {source_name}:", e)
+                break
+                
+            finally:
+                if conn:
+                    conn.close()
+                    
     return results
 
 def remove_duplicates(results):
@@ -95,8 +165,15 @@ def index():
         
         query_conditions = {source: [] for source in CONNECTION_PARAMS.keys()}
         
+        # script.py
         if form_data['property_name']:
-            query_conditions['source_2'].append(f"COALESCE(p.property_name, '') ILIKE '%{form_data['property_name']}%'")
+            # Get mapped column names for each source
+            query_conditions['source_2'].append(
+                f"COALESCE(p.{mapper.get_column('source_2', 'Property_Name')}, '') ILIKE '%{form_data['property_name']}%'"
+            )
+            query_conditions['source_3'].append(
+                f"COALESCE(p.{mapper.get_column('source_3', 'Property_Name')}, '') ILIKE '%{form_data['property_name']}%'"
+            )
             query_conditions['source_3'].append(f"COALESCE(p.name, '') ILIKE '%{form_data['property_name']}%'")
         if form_data['city']:
             query_conditions['source_2'].append(f"COALESCE(c.city, '') ILIKE '%{form_data['city']}%'")
