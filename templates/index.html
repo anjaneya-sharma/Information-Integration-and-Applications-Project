@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Search</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        .search-form {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .form-group label {
+            width: 150px;
+            margin-right: 10px;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="number"] {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 200px;
+        }
+        .price-range, .area-range {
+            display: flex;
+            gap: 10px;
+        }
+        input[type="submit"] {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        input[type="submit"]:hover {
+            background: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+        }
+        th, td {
+            padding: 12px 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Real Estate Search</h1>
+        <div class="search-form">
+            <form method="POST">
+                <div class="form-group">
+                    <label for="property_name">Property Name:</label>
+                    <input type="text" id="property_name" name="property_name">
+                </div>
+
+                <div class="form-group">
+                    <label for="city">City:</label>
+                    <input type="text" id="city" name="city">
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location:</label>
+                    <input type="text" id="location" name="location">
+                </div>
+
+                <div class="form-group">
+                    <label for="min_price">Price Range:</label>
+                    <div class="price-range">
+                        <input type="number" id="min_price" name="min_price" placeholder="Min Price">
+                        <input type="number" id="max_price" name="max_price" placeholder="Max Price">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="min_area">Area Range (sq ft):</label>
+                    <div class="area-range">
+                        <input type="number" id="min_area" name="min_area" placeholder="Min Area">
+                        <input type="number" id="max_area" name="max_area" placeholder="Max Area">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="property_type">Property Type:</label>
+                    <input type="text" id="property_type" name="property_type">
+                </div>
+
+                <div class="form-group">
+                    <label for="min_rooms">Minimum Rooms:</label>
+                    <input type="number" id="min_rooms" name="min_rooms">
+                </div>
+
+                <div class="form-group">
+                    <label for="has_balcony">Has Balcony:</label>
+                    <input type="checkbox" id="has_balcony" name="has_balcony" value="1">
+                </div>
+
+                <input type="submit" value="Search">
+            </form>
+        </div>
+
+        <h2>Results</h2>
+        <div class="table-responsive">
+            <table>
+                <tr>
+                    <th>Property Name</th>
+                    <th>Property Title</th>
+                    <th>Property Type</th>
+                    <th>Price</th>
+                    <th>Total Area</th>
+                    <th>City</th>
+                    <th>Location</th>
+                    <th>Price Per Square Feet</th>
+                    <th>Description</th>
+                    <th>Number Of Rooms</th>
+                    <th>Number Of Balconies</th>
+                    <th>Source</th>
+                </tr>
+                {% for row in data %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] if row[1] else 'N/A' }}</td>
+                    <td>{{ row[2] if row[2] else 'N/A' }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>{{ row[4] }}</td>
+                    <td>{{ row[5] if row[5] else 'N/A' }}</td>
+                    <td>{{ row[6] }}</td>
+                    <td>{{ row[7] }}</td>
+                    <td>{{ row[8] if row[8] else 'N/A' }}</td>
+                    <td>{{ row[9] if row[9] else 'N/A' }}</td>
+                    <td>{{ row[10] if row[10] else 'N/A' }}</td>
+                    <td>{{ row[11] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+</html>
